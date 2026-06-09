@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O'Reilly's Marketing Dashboard — May/June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --slate-dark:#2B3A42; --slate-mid:#4A6670; --slate-light:#7A9BAA;
+  --slate-bg:#E8ECEE; --slate-card:#F4F7F8; --white:#FFFFFF;
+  --accent:#5C8FA0; --accent-warm:#C4805A;
+  --green:#4A8C6F; --red:#A84444;
+  --green-light:#E8F5EE; --red-light:#F5E8E8;
+  --border:#D0D9DC;
+  --text-primary:#2B3A42; --text-secondary:#4A6670; --text-muted:#7A9BAA;
+  --ni:#8B6BAE;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Work Sans',sans-serif;background:#DDE3E6;color:var(--text-primary);font-size:14px;line-height:1.5;}
+
+.report-header{background:var(--slate-dark);color:white;padding:40px 48px 36px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid var(--accent);}
+.header-left h1{font-family:'DM Serif Text',serif;font-size:32px;font-weight:400;line-height:1.1;color:white;}
+.header-left .subtitle{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--slate-light);margin-top:6px;}
+.header-right{text-align:right;}
+.big-rev{font-family:'DM Serif Text',serif;font-size:42px;color:white;line-height:1;}
+.rev-label{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--slate-light);margin-bottom:4px;}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.5px;font-family:'Spline Sans Mono',monospace;}
+.pill-green{background:rgba(74,140,111,.25);color:#7DCCAA;}
+.pill-red{background:rgba(168,68,68,.25);color:#E8928A;}
+.pill-neutral{background:rgba(255,255,255,.12);color:rgba(255,255,255,.75);}
+.pill-amber{background:rgba(196,128,90,.25);color:#E8B090;}
+
+.report-body{max-width:1200px;margin:0 auto;padding:32px 24px 60px;}
+.section{margin-bottom:36px;}
+.section-title{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.cards-row{display:grid;gap:14px;}
+.cards-4{grid-template-columns:repeat(4,1fr);}
+.cards-3{grid-template-columns:repeat(3,1fr);}
+.cards-2{grid-template-columns:repeat(2,1fr);}
+.card{background:var(--white);border-radius:10px;padding:18px 20px;border:1px solid var(--border);}
+.card-dark{background:var(--slate-dark);color:white;border-color:transparent;}
+.card-label{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;}
+.card-dark .card-label{color:rgba(255,255,255,.55);}
+.card-value{font-family:'DM Serif Text',serif;font-size:26px;color:var(--slate-dark);line-height:1.1;margin-bottom:4px;}
+.card-dark .card-value{color:white;}
+.card-sub{font-size:12px;color:var(--text-muted);}
+.card-mom{font-size:11px;margin-top:5px;padding-top:5px;border-top:1px solid var(--border);color:var(--text-muted);}
+.card-dark .card-mom{border-top-color:rgba(255,255,255,.15);}
+.delta-up{color:var(--green);font-weight:600;}
+.delta-dn{color:var(--red);font-weight:600;}
+.delta-flat{color:var(--text-muted);font-weight:600;}
+
+.wide-card{background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.wide-card-header{background:var(--slate-dark);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;}
+.wide-card-header h3{font-family:'DM Serif Text',serif;font-size:17px;font-weight:400;}
+.wide-card-body{padding:20px;}
+
+.mom-strip{display:grid;grid-template-columns:repeat(4,1fr);background:white;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.mom-cell{padding:16px 18px;border-right:1px solid var(--border);}
+.mom-cell:last-child{border-right:none;}
+.mom-label{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+.mom-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;}
+.mom-period{font-size:10px;color:var(--text-muted);}
+.mom-val{font-size:13px;font-weight:600;color:var(--text-primary);}
+.mom-badge{display:inline-block;margin-top:6px;font-family:'Spline Sans Mono',monospace;font-size:11px;font-weight:600;padding:3px 8px;border-radius:12px;}
+.mom-badge.up{background:var(--green-light);color:var(--green);}
+.mom-badge.dn{background:var(--red-light);color:var(--red);}
+.mom-badge.flat{background:var(--slate-bg);color:var(--text-muted);}
+
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead tr{background:var(--slate-bg);}
+thead th{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);padding:9px 12px;text-align:left;font-weight:500;border-bottom:1px solid var(--border);}
+thead th.num{text-align:right;}
+tbody tr{border-bottom:1px solid var(--border);}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:var(--slate-card);}
+tbody td{padding:9px 12px;color:var(--text-primary);}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums;}
+tbody td.bold{font-weight:600;}
+tfoot tr{border-top:2px solid var(--slate-dark);}
+tfoot td{padding:10px 12px;font-weight:600;color:var(--slate-dark);font-size:13px;}
+tfoot td.num{text-align:right;}
+
+.bar-chart{display:flex;flex-direction:column;gap:10px;}
+.bar-row{display:flex;align-items:center;gap:12px;}
+.bar-label{width:110px;font-size:12px;color:var(--text-secondary);text-align:right;flex-shrink:0;}
+.bar-track{flex:1;height:20px;background:var(--slate-bg);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;}
+.bar-value{width:80px;font-size:12px;font-weight:600;color:var(--text-primary);flex-shrink:0;}
+.bar-pct{width:40px;font-size:11px;color:var(--text-muted);flex-shrink:0;text-align:right;}
+
+.split-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+.klav-bar{background:var(--slate-bg);border-radius:8px;height:28px;overflow:hidden;display:flex;margin:12px 0 8px;}
+.klav-seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:white;font-family:'Spline Sans Mono',monospace;letter-spacing:0.5px;}
+
+.warn{background:#FDF5E6;border:1px solid #E8C87A;border-radius:8px;padding:10px 14px;font-size:12px;color:#7A5A1A;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
+.info{background:#EEF4F7;border:1px solid #A8C4CE;border-radius:8px;padding:10px 14px;font-size:12px;color:#2B3A42;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
+
+.tag{background:var(--slate-bg);padding:2px 8px;border-radius:10px;font-size:10px;font-family:'Spline Sans Mono',monospace;color:var(--text-secondary);}
+
+.report-footer{background:var(--slate-dark);color:rgba(255,255,255,.4);text-align:center;padding:18px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;}
+
+.chart-wrap{position:relative;height:260px;}
+.chart-wrap-tall{position:relative;height:320px;}
+
+.two-col-section{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+.metric-mini{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--border);}
+.metric-mini:last-child{border-bottom:none;}
+.metric-mini-label{font-size:12px;color:var(--text-secondary);}
+.metric-mini-val{font-size:13px;font-weight:600;color:var(--text-primary);}
+
+.week-tag{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);padding:2px 7px;border-radius:10px;margin-bottom:6px;display:inline-block;}
+
+.channel-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="header-left">
+    <div class="subtitle">Marketing Performance — 4 Week Pulse</div>
+    <h1>O'Reilly's Commercial<br>& Marketing Tracker</h1>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="pill pill-neutral">w/c 11 May — 01 Jun 2026</span>
+      <span class="pill pill-neutral">4 Weeks Tracked</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="rev-label">4-Week Total Revenue</div>
+    <div class="big-rev">£128,919</div>
+    <div style="margin-top:6px;display:flex;gap:8px;justify-content:flex-end;align-items:center;">
+      <span class="pill pill-green">▲ +29.8% YoY</span>
+      <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--slate-light);">vs £99,326 in 2025</span>
+    </div>
+    <div style="margin-top:10px;font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--slate-light);">2,029 orders &nbsp;·&nbsp; £63.54 avg AOV &nbsp;·&nbsp; 3.49% conv rate</div>
+  </div>
+</div>
+
+<div class="report-body">
+
+  <!-- WEEKLY SNAPSHOT STRIP -->
+  <div class="section">
+    <div class="section-title">Weekly Snapshot</div>
+    <div class="mom-strip">
+      <!-- Week 1 -->
+      <div class="mom-cell">
+        <div class="week-tag" style="background:var(--slate-bg);color:var(--text-muted);display:inline-block;margin-bottom:6px;">w/c 11 May</div>
+        <div class="mom-label">Total Revenue</div>
+        <div class="mom-row">
+          <span class="mom-period">2026</span>
+          <span class="mom-val">£41,465</span>
+        </div>
+        <div class="mom-row">
+          <span class="mom-period">2025</span>
+          <span class="mom-val" style="color:var(--text-muted);">£15,441</span>
+        </div>
+        <span class="mom-badge up">▲ +168.5%</span>
+        <div style="margin-top:10px;" class="mom-label">Sessions</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">12,931</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">4,317</span></div>
+        <span class="mom-badge up">▲ +199.5%</span>
+        <div style="margin-top:10px;" class="mom-label">Orders</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">638</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">197</span></div>
+        <span class="mom-badge up">▲ +224%</span>
+      </div>
+      <!-- Week 2 -->
+      <div class="mom-cell">
+        <div class="week-tag" style="background:var(--slate-bg);color:var(--text-muted);display:inline-block;margin-bottom:6px;">w/c 18 May</div>
+        <div class="mom-label">Total Revenue</div>
+        <div class="mom-row">
+          <span class="mom-period">2026</span>
+          <span class="mom-val">£16,083</span>
+        </div>
+        <div class="mom-row">
+          <span class="mom-period">2025</span>
+          <span class="mom-val" style="color:var(--text-muted);">£22,371</span>
+        </div>
+        <span class="mom-badge dn">▼ −28.1%</span>
+        <div style="margin-top:10px;" class="mom-label">Sessions</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">13,861</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">5,387</span></div>
+        <span class="mom-badge up">▲ +157.3%</span>
+        <div style="margin-top:10px;" class="mom-label">Orders</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">272</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">279</span></div>
+        <span class="mom-badge dn">▼ −2.5%</span>
+      </div>
+      <!-- Week 3 -->
+      <div class="mom-cell">
+        <div class="week-tag" style="background:var(--slate-bg);color:var(--text-muted);display:inline-block;margin-bottom:6px;">w/c 25 May</div>
+        <div class="mom-label">Total Revenue</div>
+        <div class="mom-row">
+          <span class="mom-period">2026</span>
+          <span class="mom-val">£18,363</span>
+        </div>
+        <div class="mom-row">
+          <span class="mom-period">2025</span>
+          <span class="mom-val" style="color:var(--text-muted);">£20,093</span>
+        </div>
+        <span class="mom-badge dn">▼ −8.6%</span>
+        <div style="margin-top:10px;" class="mom-label">Sessions</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">16,396</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">5,115</span></div>
+        <span class="mom-badge up">▲ +220.5%</span>
+        <div style="margin-top:10px;" class="mom-label">Orders</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">305</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">271</span></div>
+        <span class="mom-badge up">▲ +12.5%</span>
+      </div>
+      <!-- Week 4 -->
+      <div class="mom-cell">
+        <div class="week-tag" style="background:var(--slate-bg);color:var(--text-muted);display:inline-block;margin-bottom:6px;">w/c 01 Jun</div>
+        <div class="mom-label">Total Revenue</div>
+        <div class="mom-row">
+          <span class="mom-period">2026</span>
+          <span class="mom-val">£53,008</span>
+        </div>
+        <div class="mom-row">
+          <span class="mom-period">2025</span>
+          <span class="mom-val" style="color:var(--text-muted);">£41,421</span>
+        </div>
+        <span class="mom-badge up">▲ +27.9%</span>
+        <div style="margin-top:10px;" class="mom-label">Sessions</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">15,000</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">5,942</span></div>
+        <span class="mom-badge up">▲ +152.4%</span>
+        <div style="margin-top:10px;" class="mom-label">Orders</div>
+        <div class="mom-row"><span class="mom-period">2026</span><span class="mom-val">814</span></div>
+        <div class="mom-row"><span class="mom-period">2025</span><span class="mom-val" style="color:var(--text-muted);">477</span></div>
+        <span class="mom-badge up">▲ +70.6%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="section">
+    <div class="section-title">Key Performance Indicators — 4 Week Total</div>
+    <div class="cards-row cards-4">
+      <div class="card">
+        <div class="card-label">Total Sessions</div>
+        <div class="card-value">58,188</div>
+        <div class="card-sub">vs 20,761 in 2025</div>
+        <div class="card-mom"><span class="delta-up">▲ +180.3% YoY</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Total Orders</div>
+        <div class="card-value">2,029</div>
+        <div class="card-sub">vs 1,224 in 2025</div>
+        <div class="card-mom"><span class="delta-up">▲ +65.8% YoY</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Avg AOV</div>
+        <div class="card-value">£63.54</div>
+        <div class="card-sub">vs £81.13 in 2025</div>
+        <div class="card-mom"><span class="delta-dn">▼ −21.7% YoY</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Add to Baskets</div>
+        <div class="card-value">11,449</div>
+        <div class="card-sub">vs 5,079 in 2025</div>
+        <div class="card-mom"><span class="delta-up">▲ +125.4% YoY</span></div>
+      </div>
+    </div>
+    <div class="cards-row cards-4" style="margin-top:14px;">
+      <div class="card">
+        <div class="card-label">Conv. Rate — w/c 11 May</div>
+        <div class="card-value">4.91%</div>
+        <div class="card-sub">vs 4.10% in 2025</div>
+        <div class="card-mom"><span class="delta-up">▲ +0.81pp YoY</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Conv. Rate — w/c 18 May</div>
+        <div class="card-value">1.83%</div>
+        <div class="card-sub">vs 5.04% in 2025</div>
+        <div class="card-mom"><span class="delta-dn">▼ −3.21pp YoY</span></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Conv. Rate — w/c 25 May</div>
+        <div class="card-value">1.70%</div>
+        <div class="card-sub">vs 5.22% in 2025</div>
+        <div class="card-mom"><span class="delta-dn">▼ −3.52pp YoY</span></div>
+      </div>
+      <div class="card card-dark">
+        <div class="card-label">Conv. Rate — w/c 01 Jun</div>
+        <div class="card-value">5.51%</div>
+        <div class="card-sub" style="color:rgba(255,255,255,.5);">vs 7.96% in 2025</div>
+        <div class="card-mom"><span class="delta-dn" style="color:#E8928A;">▼ −2.45pp YoY</span> <span style="color:rgba(255,255,255,.4);font-size:10px;">Best week</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE TREND CHART -->
+  <div class="section">
+    <div class="section-title">Revenue Trend — 2026 vs 2025</div>
+    <div class="wide-card">
+      <div class="wide-card-header">
+        <h3>Weekly Revenue Comparison</h3>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;color:rgba(255,255,255,.6);">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#5C8FA0;margin-right:4px;vertical-align:middle;"></span>2026
+          </span>
+          <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;color:rgba(255,255,255,.6);">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#C4805A;margin-right:4px;vertical-align:middle;"></span>2025
+          </span>
+        </div>
+      </div>
+      <div class="wide-card-body">
+        <div class="chart-wrap">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVENUE BY CHANNEL -->
+  <div class="section">
+    <div class="section-title">Revenue by Channel</div>
+    <div class="split-row">
+      <div class="wide-card">
+        <div class="wide-card-header">
+          <h3>4-Week Channel Revenue</h3>
+          <span class="pill pill-neutral">GA4 Attribution</span>
+        </div>
+        <div class="wide-card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <div class="bar-label">Direct</div>
+              <div class="bar-track"><div class="bar-fill" style="width:58.3%;background:var(--accent);"></div></div>
+              <div class="bar-value">£72,919</div>
+              <div class="bar-pct">56.6%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Paid Social</div>
+              <div class="bar-track"><div class="bar-fill" style="width:10.7%;background:#8B6BAE;"></div></div>
+              <div class="bar-value">£13,588</div>
+              <div class="bar-pct">10.5%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Organic Search</div>
+              <div class="bar-track"><div class="bar-fill" style="width:14.6%;background:var(--green);"></div></div>
+              <div class="bar-value">£18,860</div>
+              <div class="bar-pct">14.6%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Paid Search</div>
+              <div class="bar-track"><div class="bar-fill" style="width:8.9%;background:var(--accent-warm);"></div></div>
+              <div class="bar-value">£11,671</div>
+              <div class="bar-pct">9.1%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Organic Social</div>
+              <div class="bar-track"><div class="bar-fill" style="width:5.3%;background:#5C8FA0;"></div></div>
+              <div class="bar-value">£6,796</div>
+              <div class="bar-pct">5.3%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Referral</div>
+              <div class="bar-track"><div class="bar-fill" style="width:2.3%;background:#7A9BAA;"></div></div>
+              <div class="bar-value">£3,094</div>
+              <div class="bar-pct">2.4%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Email</div>
+              <div class="bar-track"><div class="bar-fill" style="width:0.8%;background:#4A6670;"></div></div>
+              <div class="bar-value">£1,002</div>
+              <div class="bar-pct">0.8%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wide-card">
+        <div class="wide-card-header">
+          <h3>Sessions by Channel</h3>
+          <span class="pill pill-neutral">GA4 Attribution</span>
+        </div>
+        <div class="wide-card-body">
+          <div class="bar-chart">
+            <div class="bar-row">
+              <div class="bar-label">Paid Social</div>
+              <div class="bar-track"><div class="bar-fill" style="width:30.8%;background:#8B6BAE;"></div></div>
+              <div class="bar-value">17,900</div>
+              <div class="bar-pct">30.8%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Direct</div>
+              <div class="bar-track"><div class="bar-fill" style="width:33.0%;background:var(--accent);"></div></div>
+              <div class="bar-value">19,397</div>
+              <div class="bar-pct">33.3%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Organic Search</div>
+              <div class="bar-track"><div class="bar-fill" style="width:13.2%;background:var(--green);"></div></div>
+              <div class="bar-value">7,734</div>
+              <div class="bar-pct">13.3%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Paid Search</div>
+              <div class="bar-track"><div class="bar-fill" style="width:6.3%;background:var(--accent-warm);"></div></div>
+              <div class="bar-value">3,749</div>
+              <div class="bar-pct">6.4%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Organic Social</div>
+              <div class="bar-track"><div class="bar-fill" style="width:8.2%;background:#5C8FA0;"></div></div>
+              <div class="bar-value">4,957</div>
+              <div class="bar-pct">8.5%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Referral</div>
+              <div class="bar-track"><div class="bar-fill" style="width:2.0%;background:#7A9BAA;"></div></div>
+              <div class="bar-value">1,157</div>
+              <div class="bar-pct">2.0%</div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-label">Email</div>
+              <div class="bar-track"><div class="bar-fill" style="width:0.3%;background:#4A6670;"></div></div>
+              <div class="bar-value">149</div>
+              <div class="bar-pct">0.3%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEKLY CHANNEL DETAIL TABLE -->
+  <div class="section">
+    <div class="section-title">Weekly Revenue by Channel — Detail</div>
+    <div class="wide-card">
+      <div class="wide-card-header">
+        <h3>Revenue by Channel — Weekly Breakdown</h3>
+        <span class="pill pill-neutral">GA4</span>
+      </div>
+      <div class="wide-card-body" style="padding:0;">
+        <table>
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th class="num">w/c 11 May</th>
+              <th class="num">w/c 18 May</th>
+              <th class="num">w/c 25 May</th>
+              <th class="num">w/c 01 Jun</th>
+              <th class="num">4-Wk Total</th>
+              <th class="num">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bold"><span class="channel-dot" style="background:var(--accent);"></span>Direct</td>
+              <td class="num">£15,404</td><td class="num">£10,148</td><td class="num">£11,930</td><td class="num">£35,437</td>
+              <td class="num bold">£72,919</td><td class="num">56.6%</td>
+            </tr>
+            <tr>
+              <td class="bold"><span class="channel-dot" style="background:#8B6BAE;"></span>Paid Social</td>
+              <td class="num">£12,083</td><td class="num">£1,377</td><td class="num">£62</td><td class="num">£66</td>
+              <td class="num bold">£13,588</td><td class="num">10.5%</td>
+            </tr>
+            <tr>
+              <td class="bold"><span class="channel-dot" style="background:var(--green);"></span>Organic Search</td>
+              <td class="num">£5,993</td><td class="num">£2,027</td><td class="num">£2,549</td><td class="num">£8,290</td>
+              <td class="num bold">£18,859</td><td class="num">14.6%</td>
+            </tr>
+            <tr>
+              <td class="bold"><span class="channel-dot" style="background:var(--accent-warm);"></span>Paid Search</td>
+              <td class="num">£4,760</td><td class="num">£939</td><td class="num">£1,618</td><td class="num">£4,354</td>
+              <td class="num bold">£11,671</td><td class="num">9.1%</td>
+            </tr>
+            <tr>
+              <td class="bold"><span class="channel-dot" style="background:#5C8FA0;"></span>Organic Social</td>
+              <td class="num">£2,564</td><td class="num">£1,134</td><td class="num">£828</td><td class="num">£2,271</td>
+              <td class="num bold">£6,797</td><td class="num">5.3%</td>
+            </tr>
+            <tr>
+              <td class="bold"><span class="channel-dot" style="background:#7A9BAA;"></span>Referral</td>
+              <td class="num">£443</td><td class="num">£120</td><td class="num">£613</td><td class="num">£1,918</td>
+              <td class="num bold">£3,094</td><td class="num">2.4%</td>
+            </tr>
+            <tr>
+              <td class="bold"><span class="channel-dot" style="background:#4A6670;"></span>Email (GA4)</td>
+              <td class="num">£218</td><td class="num">£163</td><td class="num">£263</td><td class="num">£358</td>
+              <td class="num bold">£1,002</td><td class="num">0.8%</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="bold">Total</td>
+              <td class="num">£41,465</td><td class="num">£16,083</td><td class="num">£18,363</td><td class="num">£53,008</td>
+              <td class="num">£128,919</td><td class="num">100%</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMAIL / KLAVIYO -->
+  <div class="section">
+    <div class="section-title">Email — Klaviyo</div>
+    <div class="split-row">
+      <div class="wide-card">
+        <div class="wide-card-header">
+          <h3>Klaviyo Revenue Attribution</h3>
+          <span class="pill pill-green">£59,444 total</span>
+        </div>
+        <div class="wide-card-body">
+          <div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Flow Revenue</span>
+              <span style="font-weight:600;font-size:13px;">£48,076</span>
+            </div>
+            <div class="klav-bar">
+              <div class="klav-seg" style="width:80.9%;background:var(--accent);">80.9%</div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Campaign Revenue</span>
+              <span style="font-weight:600;font-size:13px;">£11,368</span>
+            </div>
+            <div class="klav-bar">
+              <div class="klav-seg" style="width:19.1%;background:var(--accent-warm);">19.1%</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;" class="info">
+            <span>ℹ</span>
+            <span>Klaviyo attributes significantly more revenue than GA4's email channel (£59k vs £1k). Klaviyo uses last-click attribution within its platform — both figures are valid for different views.</span>
+          </div>
+        </div>
+      </div>
+      <div class="wide-card">
+        <div class="wide-card-header">
+          <h3>List Growth & Campaign Volume</h3>
+        </div>
+        <div class="wide-card-body">
+          <table>
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th class="num">11 May</th>
+                <th class="num">18 May</th>
+                <th class="num">25 May</th>
+                <th class="num">01 Jun</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Total Subscribers</td><td class="num">9,081</td><td class="num">9,657</td><td class="num">10,583</td><td class="num bold">12,066</td></tr>
+              <tr><td>Email Subscribers</td><td class="num">7,789</td><td class="num">8,343</td><td class="num">9,239</td><td class="num bold">10,587</td></tr>
+              <tr><td>SMS Subscribers</td><td class="num">1,292</td><td class="num">1,314</td><td class="num">1,344</td><td class="num bold">1,479</td></tr>
+              <tr><td>Campaign Recipients</td><td class="num">13,908</td><td class="num">27,998</td><td class="num">8,273</td><td class="num">16,156</td></tr>
+              <tr><td>Flow Recipients</td><td class="num">1,865</td><td class="num">1,970</td><td class="num">3,615</td><td class="num">6,147</td></tr>
+              <tr><td>Campaigns Sent</td><td class="num">8</td><td class="num">10</td><td class="num">8</td><td class="num">3</td></tr>
+              <tr><td class="bold">Flow Sales</td><td class="num">£2,643</td><td class="num">£1,551</td><td class="num">£12,052</td><td class="num bold">£31,829</td></tr>
+              <tr><td class="bold">Campaign Sales</td><td class="num">£2,616</td><td class="num">£2,151</td><td class="num">£1,589</td><td class="num bold">£5,011</td></tr>
+            </tbody>
+          </table>
+          <div class="info" style="margin-top:12px;">
+            <span>ℹ</span>
+            <span>Subscriber list grew +32.9% over 4 weeks (9,081 → 12,066). Flow revenue surged in w/c 01 Jun — likely driven by an automated post-purchase or welcome sequence.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAID MEDIA / META -->
+  <div class="section">
+    <div class="section-title">Paid Media — Meta</div>
+    <div class="cards-row cards-3">
+      <div class="card card-dark">
+        <div class="card-label">Meta Spend — w/c 11 May</div>
+        <div class="card-value">£1,489</div>
+        <div class="card-sub" style="color:rgba(255,255,255,.5);">Paid Social sessions: 5,061</div>
+        <div class="card-mom">
+          <span style="color:rgba(255,255,255,.6);">Paid Social revenue: </span><span style="color:white;font-weight:600;">£12,083</span>
+          <span class="pill pill-green" style="margin-left:6px;">8.1x ROAS</span>
+        </div>
+      </div>
+      <div class="card card-dark">
+        <div class="card-label">Meta Spend — w/c 18 May</div>
+        <div class="card-value">£1,374</div>
+        <div class="card-sub" style="color:rgba(255,255,255,.5);">Paid Social sessions: 5,591</div>
+        <div class="card-mom">
+          <span style="color:rgba(255,255,255,.6);">Paid Social revenue: </span><span style="color:white;font-weight:600;">£1,377</span>
+          <span class="pill pill-red" style="margin-left:6px;">1.0x ROAS</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-label">Meta Spend — w/c 25 May + 01 Jun</div>
+        <div class="card-value">£0</div>
+        <div class="card-sub">No spend recorded</div>
+        <div class="card-mom">Paid Social sessions still generated: <span class="delta-flat">5,733 / 1,515</span></div>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:14px;">
+      <span>⚠</span>
+      <span>Meta spend only recorded for 2 of 4 weeks. Weeks 3 &amp; 4 show Paid Social sessions (5,733 and 1,515) with negligible attributed revenue — this may indicate the spend field wasn't updated, or that traffic was residual from prior campaigns. Add Google Ads spend when available.</span>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="section">
+    <div class="section-title">Organic Social</div>
+    <div class="wide-card">
+      <div class="wide-card-header">
+        <h3>Reach &amp; Engagement — All Platforms</h3>
+        <span class="pill pill-amber">Data Not Yet Populated</span>
+      </div>
+      <div class="wide-card-body" style="padding:0;">
+        <table>
+          <thead>
+            <tr>
+              <th>Platform / Metric</th>
+              <th class="num">w/c 11 May</th>
+              <th class="num">w/c 18 May</th>
+              <th class="num">w/c 25 May</th>
+              <th class="num">w/c 01 Jun</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="color:var(--text-muted);font-style:italic;"><span class="channel-dot" style="background:#E1306C;"></span>Instagram — Reach</td>
+              <td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td></tr>
+            <tr><td style="color:var(--text-muted);font-style:italic;"><span class="channel-dot" style="background:#E1306C;"></span>Instagram — Engagement</td>
+              <td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td></tr>
+            <tr><td style="color:var(--text-muted);font-style:italic;"><span class="channel-dot" style="background:#1877F2;"></span>Facebook — Reach</td>
+              <td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td></tr>
+            <tr><td style="color:var(--text-muted);font-style:italic;"><span class="channel-dot" style="background:#1877F2;"></span>Facebook — Engagement</td>
+              <td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td></tr>
+            <tr><td style="color:var(--text-muted);font-style:italic;"><span class="channel-dot" style="background:#000;"></span>TikTok — Reach</td>
+              <td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td></tr>
+            <tr><td style="color:var(--text-muted);font-style:italic;"><span class="channel-dot" style="background:#000;"></span>TikTok — Video Views</td>
+              <td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td><td class="num" style="color:var(--text-muted);">—</td></tr>
+          </tbody>
+        </table>
+        <div class="info" style="margin:16px 20px;">
+          <span>ℹ</span>
+          <div>
+            <strong>See below for recommended figures to add to these columns.</strong>
+            Note: Organic Social sessions are performing well (4,957 across 4 weeks, up to 256% YoY on w/c 01 Jun) — adding reach and engagement data will help explain what's driving this.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT TO ADD FOR META/TIKTOK -->
+  <div class="section">
+    <div class="section-title">Meta &amp; TikTok — Recommended Tracking Figures</div>
+    <div class="split-row">
+
+      <div class="wide-card">
+        <div class="wide-card-header">
+          <h3>Meta (Instagram &amp; Facebook)</h3>
+          <span class="pill pill-neutral">Organic Columns</span>
+        </div>
+        <div class="wide-card-body">
+          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:14px;">Pull from <strong>Meta Business Suite → Insights</strong> weekly (Monday pull for prior week):</p>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Reach</strong> (per platform)</span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Accounts Reached</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Impressions</strong> (optional add)</span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Total Impressions</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Engagement</strong> (per platform)</span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Likes + Comments + Shares + Saves</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Follower Change</strong> (weekly +/−)</span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Audience Growth</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Engagement Rate</strong> (optional)</span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Engagements ÷ Reach</span>
+          </div>
+          <div style="margin-top:14px;" class="warn">
+            <span>⚠</span>
+            <span>You're already tracking Meta paid spend. Consider adding <strong>ROAS, CPM, and Link Clicks</strong> from Meta Ads Manager alongside the organic figures — especially given the big difference in week 1 (8.1x ROAS) vs week 2 (1.0x).</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wide-card">
+        <div class="wide-card-header">
+          <h3>TikTok</h3>
+          <span class="pill pill-neutral">Organic Columns</span>
+        </div>
+        <div class="wide-card-body">
+          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:14px;">Pull from <strong>TikTok Business Suite → Analytics → Content</strong> weekly:</p>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Video Views</strong></span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Total across all posts</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Reach / Unique Viewers</strong></span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Unique accounts reached</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Engagement</strong></span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Likes + Comments + Shares</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Profile Visits</strong></span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Traffic intent signal</span>
+          </div>
+          <div class="metric-mini">
+            <span class="metric-mini-label"><strong>Follower Change</strong> (weekly +/−)</span>
+            <span class="metric-mini-val" style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--text-muted);">Already in tracker — keep it</span>
+          </div>
+          <div style="margin-top:14px;" class="info">
+            <span>ℹ</span>
+            <span>Your tracker uses "TikTok (video views)" as the engagement metric — that's the right call. For Reach, use <strong>Unique Viewers</strong> rather than total view count, as it's a truer measure of new audience size per week.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="section">
+    <div class="section-title">At a Glance — 4 Week Summary</div>
+    <div class="wide-card">
+      <div class="wide-card-header">
+        <h3>Full KPI Summary</h3>
+        <span class="pill pill-neutral">2026 vs 2025</span>
+      </div>
+      <div class="wide-card-body" style="padding:0;">
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="num">4-Wk 2026</th>
+              <th class="num">4-Wk 2025</th>
+              <th class="num">YoY Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="bold">Total Revenue</td><td class="num bold">£128,919</td><td class="num">£99,326</td><td class="num"><span class="delta-up">▲ +29.8%</span></td></tr>
+            <tr><td>Total Sessions</td><td class="num">58,188</td><td class="num">20,761</td><td class="num"><span class="delta-up">▲ +180.3%</span></td></tr>
+            <tr><td>Total Orders</td><td class="num">2,029</td><td class="num">1,224</td><td class="num"><span class="delta-up">▲ +65.8%</span></td></tr>
+            <tr><td>Avg AOV</td><td class="num">£63.54</td><td class="num">£81.13</td><td class="num"><span class="delta-dn">▼ −21.7%</span></td></tr>
+            <tr><td>Add to Baskets</td><td class="num">11,449</td><td class="num">5,079</td><td class="num"><span class="delta-up">▲ +125.4%</span></td></tr>
+            <tr><td>Paid Social Sessions</td><td class="num">17,900</td><td class="num">18</td><td class="num"><span class="delta-up">▲ +99,344%</span></td></tr>
+            <tr><td>Direct Sessions</td><td class="num">19,397</td><td class="num">9,277</td><td class="num"><span class="delta-up">▲ +109.1%</span></td></tr>
+            <tr><td>Organic Search Sessions</td><td class="num">7,734</td><td class="num">5,026</td><td class="num"><span class="delta-up">▲ +53.9%</span></td></tr>
+            <tr><td>Organic Social Sessions</td><td class="num">4,957</td><td class="num">2,562</td><td class="num"><span class="delta-up">▲ +93.5%</span></td></tr>
+            <tr><td>Meta Ad Spend</td><td class="num">£2,863</td><td class="num">—</td><td class="num"><span class="delta-flat">New</span></td></tr>
+            <tr><td class="bold">Email Revenue (Klaviyo)</td><td class="num bold">£59,444</td><td class="num">—</td><td class="num"><span class="delta-flat">New</span></td></tr>
+            <tr><td>Klaviyo Total Subscribers</td><td class="num">12,066 (end)</td><td class="num">—</td><td class="num"><span class="delta-flat">+32.9% in 4 wks</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end report-body -->
+
+<div class="report-footer">
+  O'Reilly's Marketing Tracker &nbsp;·&nbsp; w/c 11 May — 01 Jun 2026 &nbsp;·&nbsp; Data: GA4 + Klaviyo &nbsp;·&nbsp; Built with Kukoon Report Template
+</div>
+
+<script>
+// Revenue Trend Chart
+const weeks = ["w/c 11 May", "w/c 18 May", "w/c 25 May", "w/c 01 Jun"];
+const rev2026 = [41464.65, 16083.28, 18362.90, 53008.34];
+const rev2025 = [15440.95, 22371.35, 20093.05, 41420.95];
+
+const ctx = document.getElementById("revenueChart").getContext("2d");
+new Chart(ctx, {
+  type: "bar",
+  data: {
+    labels: weeks,
+    datasets: [
+      {
+        label: "2026",
+        data: rev2026,
+        backgroundColor: "#5C8FA0",
+        borderRadius: 4,
+        order: 1
+      },
+      {
+        label: "2025",
+        data: rev2025,
+        backgroundColor: "#C4805A",
+        borderRadius: 4,
+        order: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => `${ctx.dataset.label}: £${ctx.parsed.y.toLocaleString("en-GB", {minimumFractionDigits:0,maximumFractionDigits:0})}`
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: { family: "'Work Sans', sans-serif", size: 12 }, color: "#4A6670" }
+      },
+      y: {
+        grid: { color: "#E8ECEE" },
+        ticks: {
+          font: { family: "'Work Sans', sans-serif", size: 11 },
+          color: "#7A9BAA",
+          callback: v => "£" + (v/1000).toFixed(0) + "k"
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
