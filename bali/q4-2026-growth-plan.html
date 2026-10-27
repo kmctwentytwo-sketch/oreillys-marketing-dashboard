@@ -1,0 +1,347 @@
+<title>Bali Q4 Growth Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, data blocks break wider; plan reads top-down from diagnosis to calendar to this week's actions */
+:root{
+  --bg:#EEF1EF; --surface:#FFFFFF; --ink:#18221F; --muted:#56635E; --line:#CDD6D2;
+  --moss:#2F6B52; --moss-soft:#DCEBE3; --ember:#B4532A; --ember-soft:#F6E2D8;
+  --bar-25:#9AAAA3; --bar-26:#2F6B52;
+  --good:#2F7A4F; --bad:#A6402E;
+  --f-display:"Archivo Narrow","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121816; --surface:#1A2320; --ink:#E6ECE9; --muted:#9DAAA5; --line:#2F3B37;
+  --moss:#6FBF98; --moss-soft:#1F3A2E; --ember:#E68A5E; --ember-soft:#3A2419;
+  --bar-25:#5D6B66; --bar-26:#6FBF98; --good:#72C795; --bad:#EE8B78; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121816; --surface:#1A2320; --ink:#E6ECE9; --muted:#9DAAA5; --line:#2F3B37;
+  --moss:#6FBF98; --moss-soft:#1F3A2E; --ember:#E68A5E; --ember-soft:#3A2419;
+  --bar-25:#5D6B66; --bar-26:#6FBF98; --good:#72C795; --bad:#EE8B78; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:980px;margin:0 auto;padding-block:40px 72px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(34px,6vw,54px);font-weight:700;letter-spacing:-.01em;text-transform:uppercase}
+h2{font-size:28px;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+h3{font-size:19px;font-weight:600}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:18px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--ink);padding-top:14px}
+.lede{font-size:18px;max-width:60ch}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-mono)}
+.num{font-variant-numeric:tabular-nums}
+.up{color:var(--good);font-weight:600}.dn{color:var(--bad);font-weight:600}
+header{display:flex;flex-direction:column;gap:16px}
+.thesis{background:var(--moss);color:var(--bg);padding:20px 22px;border-radius:4px;font-size:18px;font-weight:500;max-width:none}
+.thesis strong{font-family:var(--f-display);font-size:22px;text-transform:uppercase;letter-spacing:.02em;display:block;margin-bottom:4px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stat{border-left:3px solid var(--line);padding:4px 0 4px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat.bad{border-color:var(--bad)}.stat.good{border-color:var(--good)}
+.stat .v{font-family:var(--f-display);font-size:34px;font-weight:700;line-height:1}
+.stat .l{font-size:13px;color:var(--muted)}
+.tbl{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:none}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cal td:first-child{white-space:nowrap;font-family:var(--f-mono);font-size:12.5px}
+.cal tr.peak td{background:var(--ember-soft)}
+.chip{display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:2px;background:var(--moss-soft);color:var(--moss);white-space:nowrap}
+.chip.hot{background:var(--ember-soft);color:var(--ember)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card ul,.list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.move{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.move .n{font-family:var(--f-display);font-size:40px;font-weight:700;line-height:.9;color:var(--moss)}
+.move .body{display:flex;flex-direction:column;gap:8px;min-width:0}
+.why{font-size:13.5px;color:var(--muted);border-left:2px solid var(--ember);padding-left:10px}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px 16px 10px;overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:560px;height:auto}
+.chart text{font-family:var(--f-mono);font-size:10px;fill:var(--muted)}
+.chart .lbl{fill:var(--ink);font-size:10.5px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px}
+.split{display:flex;flex-direction:column;gap:8px}
+.split .row{display:grid;grid-template-columns:170px 1fr 48px;gap:10px;align-items:center;font-size:14px}
+.split .track{height:14px;background:var(--bg);border-radius:2px;overflow:hidden}
+.split .fill{height:100%;background:var(--moss)}
+.split .fill.e{background:var(--ember)}
+.checklist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.checklist li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:11px 14px;border-bottom:1px solid var(--line);align-items:baseline}
+.checklist li:last-child{border-bottom:none}
+.checklist .box{width:12px;height:12px;border:1.5px solid var(--muted);border-radius:2px;display:inline-block;transform:translateY(1px)}
+footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:560px){.split .row{grid-template-columns:110px 1fr 40px}.move{grid-template-columns:30px 1fr}.move .n{font-size:30px}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Bali Clothing · Rest-of-year plan · 27 Oct – 31 Dec 2026</div>
+  <h1>Q4 growth plan: get more people to the site</h1>
+  <p class="lede">October shows the site is converting better than last year. Fewer people are reaching it. This plan uses email, a product launch, TikTok, Facebook, Instagram, creators and partnership ads to rebuild traffic while paid spend stays low. It runs through Black Friday and Christmas.</p>
+  <p class="thesis"><strong>Conversion is up. Traffic is down 30%.</strong>Sessions fell from 6,629 to 4,665 while conversion rose from 1.52% to 1.65%. Each extra 1,000 sessions is worth about €1,300 in net sales at October's rate, so the job for the next nine weeks is traffic.</p>
+</header>
+
+<!-- 1. Diagnosis -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">01 · What October told us</span><h2>1–26 Oct 2026 vs 1–26 Oct 2025</h2></div>
+  <div class="grid g3">
+    <div class="stat bad"><span class="v num">−34.5%</span><span class="l">Net sales: €6,052 vs €9,238</span></div>
+    <div class="stat bad"><span class="v num">−55%</span><span class="l">New customers: 34 vs 75. Returning customers held at 55 vs 54.</span></div>
+    <div class="stat good"><span class="v num">+0.13pp</span><span class="l">Conversion rate: 1.65% vs 1.52%. Add-to-cart rate rose from 6.4% to 7.9%.</span></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Metric</th><th class="r">Oct 2025</th><th class="r">Oct 2026</th><th class="r">Change</th></tr></thead>
+    <tbody>
+      <tr><td>Sessions</td><td class="r">6,629</td><td class="r">4,665</td><td class="r dn">−29.6%</td></tr>
+      <tr><td>Orders</td><td class="r">136</td><td class="r">92</td><td class="r dn">−32.4%</td></tr>
+      <tr><td>Average order value</td><td class="r">€72.03</td><td class="r">€69.89</td><td class="r dn">−3.0%</td></tr>
+      <tr><td>Sessions reaching checkout</td><td class="r">189</td><td class="r">204</td><td class="r up">+7.9%</td></tr>
+      <tr><td>Social sessions (Facebook + Instagram)</td><td class="r">2,962</td><td class="r">1,751</td><td class="r dn">−40.9%</td></tr>
+      <tr><td>Facebook sessions</td><td class="r">1,907</td><td class="r">966</td><td class="r dn">−49.3%</td></tr>
+      <tr><td>Instagram sessions</td><td class="r">1,054</td><td class="r">784</td><td class="r dn">−25.6%</td></tr>
+      <tr><td>Search sessions (mostly Google)</td><td class="r">1,308</td><td class="r">992</td><td class="r dn">−24.2%</td></tr>
+      <tr><td>Direct sessions</td><td class="r">2,166</td><td class="r">1,818</td><td class="r dn">−16.1%</td></tr>
+      <tr><td>Sessions referred by O'Reilly's</td><td class="r">44</td><td class="r">26</td><td class="r dn">−40.9%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What it means</h3>
+      <ul>
+        <li><b>The ad cut explains most of the fall.</b> Facebook traffic halved. Branded Google search fell 24% too, because fewer people are seeing Bali in their feeds.</li>
+        <li><b>Acquisition is the problem, not loyalty.</b> Returning customers held steady and new customers more than halved.</li>
+        <li><b>Social traffic converts at 0.8%.</b> Direct and search convert at 2.1–2.3%. Social content needs to send warmer visitors, which creator and partnership content does better than brand ads.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Email (Klaviyo, October)</h3>
+      <ul>
+        <li>Campaigns went to about <b>10,300 people</b>, including the "Unengaged 180 days" segment. Open rates were 23–27% and revenue per recipient was €0.04–0.06.</li>
+        <li>Last October's launch email went to <b>5,500 engaged people</b>. It opened at 42% and made €0.30 per recipient, about six times more.</li>
+        <li>The store-credit email to purchasers was this month's best performer: €0.35 per recipient and a 6.3% click rate.</li>
+        <li>Flows have too little traffic to work with. The welcome series reached 216 people and abandoned cart reached 110. They will grow as traffic returns.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Where Q4 money comes from -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">02 · Where Q4 money comes from</span><h2>Three weeks made 60% of last year's Q4</h2></div>
+  <p>Weekly net sales for the same period last year are shown below. From 27 Oct 2025 the business made about <b>€83k</b>. The three weeks from 17 Nov to 7 Dec made <b>€50k</b> of that. Cyber week alone made €23.8k from 334 orders and brought in 238 new customers. Hold back budget, creator content and launches so they land in that window.</p>
+  <div class="chart" role="img" aria-label="Bar chart of 2025 weekly net sales from 29 Sep to 29 Dec, peaking at 23,803 euro in the week of 1 December">
+    <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- scale: 0–25,000 € mapped to y 220→20 (8px per €1k) -->
+      <g stroke="var(--line)" stroke-width="1">
+        <line x1="44" y1="220" x2="712" y2="220"/>
+        <line x1="44" y1="180" x2="712" y2="180" stroke-dasharray="2 4"/>
+        <line x1="44" y1="140" x2="712" y2="140" stroke-dasharray="2 4"/>
+        <line x1="44" y1="100" x2="712" y2="100" stroke-dasharray="2 4"/>
+        <line x1="44" y1="60" x2="712" y2="60" stroke-dasharray="2 4"/>
+        <line x1="44" y1="20" x2="712" y2="20" stroke-dasharray="2 4"/>
+      </g>
+      <g text-anchor="end">
+        <text x="38" y="223">€0</text><text x="38" y="183">€5k</text><text x="38" y="143">€10k</text>
+        <text x="38" y="103">€15k</text><text x="38" y="63">€20k</text><text x="38" y="23">€25k</text>
+      </g>
+      <!-- peak window band: weeks 17 Nov, 24 Nov, 1 Dec (index 7,8,9) -->
+      <rect x="374" y="14" width="141" height="206" fill="var(--ember-soft)"/>
+      <text x="444" y="12" text-anchor="middle" class="lbl" style="fill:var(--ember)">€50k · 60%</text>
+      <!-- bars: slot 47px from x=50, bar width 32; h = value/1000*8 -->
+      <g fill="var(--bar-25)">
+        <rect x="50"  y="204.1" width="32" height="15.9"/>
+        <rect x="97"  y="205.4" width="32" height="14.6"/>
+        <rect x="144" y="208.3" width="32" height="11.7"/>
+        <rect x="191" y="188.3" width="32" height="31.7"/>
+        <rect x="238" y="193.3" width="32" height="26.7" fill="var(--moss)"/>
+        <rect x="285" y="200.5" width="32" height="19.5" fill="var(--moss)"/>
+        <rect x="332" y="168.9" width="32" height="51.1" fill="var(--moss)"/>
+        <rect x="379" y="122.7" width="32" height="97.3" fill="var(--ember)"/>
+        <rect x="426" y="107.8" width="32" height="112.2" fill="var(--ember)"/>
+        <rect x="473" y="29.6"  width="32" height="190.4" fill="var(--ember)"/>
+        <rect x="520" y="144.0" width="32" height="76.0" fill="var(--moss)"/>
+        <rect x="567" y="153.9" width="32" height="66.1" fill="var(--moss)"/>
+        <rect x="614" y="200.7" width="32" height="19.3" fill="var(--moss)"/>
+        <rect x="661" y="212.6" width="32" height="7.4" fill="var(--moss)"/>
+      </g>
+      <g text-anchor="middle" class="lbl">
+        <text x="395" y="117">12.2k</text><text x="442" y="102">14.0k</text><text x="489" y="24" style="font-weight:600">23.8k</text>
+        <text x="536" y="138">9.5k</text><text x="583" y="148">8.3k</text><text x="348" y="163">6.4k</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="66" y="236">29 Sep</text><text x="113" y="236">6 Oct</text><text x="160" y="236">13 Oct</text><text x="207" y="236">20 Oct</text>
+        <text x="254" y="236">27 Oct</text><text x="301" y="236">3 Nov</text><text x="348" y="236">10 Nov</text><text x="395" y="236">17 Nov</text>
+        <text x="442" y="236">24 Nov</text><text x="489" y="236">1 Dec</text><text x="536" y="236">8 Dec</text><text x="583" y="236">15 Dec</text>
+        <text x="630" y="236">22 Dec</text><text x="677" y="236">29 Dec</text>
+        <text x="378" y="254">Week commencing, 2025</text>
+      </g>
+    </svg>
+    <div class="legend"><span><i style="background:var(--bar-25)"></i>Before the plan window</span><span><i style="background:var(--moss)"></i>Plan window (equivalent weeks)</span><span><i style="background:var(--ember)"></i>Black Friday to Cyber peak</span></div>
+  </div>
+  <div class="card">
+    <h3>What sold last Q4 and what is selling now</h3>
+    <p>The <b>Baseline Oversized Hoodie</b> was last year's Q4 hero, with €18.1k and 373 units. Its men's cut, the <b>Baseline Oversized Hoodie – Mens</b>, sold 29 units (€1.4k) and is no longer in the range. Stocking fillers were big too: the Winter Beanie sold 309 units and Crew Socks sold 324. This October the leaders are the Signature Oversized Hoodie (€1.4k), Sculpt Leggings (€1.3k) and Signature Half Zip (€1.1k). The "Gift Boxes Drop" email was last November's best campaign, at €2.0k.</p>
+  </div>
+</section>
+
+<!-- 3. Five moves -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">03 · The strategy</span><h2>Five moves</h2></div>
+
+  <div class="card move"><span class="n">1</span><div class="body">
+    <h3>Build a partnership-ads engine: Sinéad, Steven, O'Reilly's and creators</h3>
+    <p>Run Bali ads from other people's handles: Meta partnership ads (Instagram and Facebook) and TikTok Spark Ads. Partnership ads usually get cheaper clicks and higher click-through than brand-handle ads because they look like recommendations. That's what a smaller budget needs.</p>
+    <ul>
+      <li><b>Sinéad and Steven:</b> post collab posts (shared to Bali's grid) and grant ad permission once, so the best organic posts can be boosted without new production. Use a talking-to-camera format: "what I'm wearing this winter", "the hoodie I live in", gift picks.</li>
+      <li><b>O'Reilly's:</b> collab posts on the O'Reilly's Instagram and TikTok to launch the "Bali at O'Reilly's" edit (move 3). Run them as partnership ads aimed at O'Reilly's audience and lookalikes.</li>
+      <li><b>Gifted creators already in the Hub:</b> Ciara Gillespie, Emma Murray, Kate Gallagher, Gerry Lavery, Amanda Woods and Georgia Keys have product. Next are the larger approved names, Niamh Gallagher (257k TikTok) and Cáoileánn Conway (237k TikTok). Gerry Lavery is the natural lead for the men's hoodie.</li>
+      <li><b>Fix the bottleneck:</b> in the Influencer Hub, the "Whitelisted", "Content Live" and "Ad Live" columns are almost all unticked. Content is getting made but not used. Get permissions and TikTok ad codes in before Black Friday, and require commercial-safe audio, as the existing reminder template already asks.</li>
+    </ul>
+    <p class="why">Why: social traffic fell 41% and it converts at 0.8%. Creator content brings back reach and warmer clicks without returning to old spend levels.</p>
+  </div></div>
+
+  <div class="card move"><span class="n">2</span><div class="body">
+    <h3>Launch the men's hoodie as the Christmas product story</h3>
+    <ul>
+      <li>Bring back the <b>Baseline Oversized Hoodie – Mens</b> in 2–3 core colours. Position it as "the one for him", with matching His & Hers sets alongside the women's Signature and Baseline hoodies.</li>
+      <li><b>Waitlist first (2–11 Nov):</b> run a "Notify me" sign-up from organic, creators and email. This builds the list for BF and shows how many units to commit.</li>
+      <li><b>Launch on Thu 12 Nov at full price.</b> That's two weeks before Black Friday, so it's in hand for gifting and gets a full-price window. Include it in BF as a bundle (hoodie + beanie + socks) rather than a straight discount.</li>
+      <li>If stock can't land by 12 Nov, run it as a pre-order with a clear "ships by 10 Dec" date. A gifting product that arrives after the Christmas cut-off is a lost sale.</li>
+    </ul>
+    <p class="why">Why: it gives Bali new news to share while ad spend is low, it opens a second buyer (women buying for partners, brothers and dads), and it raises order value through sets.</p>
+  </div></div>
+
+  <div class="card move"><span class="n">3</span><div class="body">
+    <h3>List a Bali edit on O'Reilly's</h3>
+    <ul>
+      <li>O'Reilly's drew <b>58,188 sessions in four weeks</b> in May–June 2026 (from the O'Reilly's dashboard in this repo). That's roughly ten times Bali's monthly traffic. Listing a curated edit puts Bali in front of shoppers it can't currently afford to reach.</li>
+      <li><b>Edit of 6–8 products:</b> Signature Oversized Hoodie, Signature Half Zip, Sculpt Leggings, Baseline Oversized Hoodie (women's and men's), Crew Socks and Beanie as add-ons, plus gift boxes.</li>
+      <li>Keep prices the same as baliclothing.ie so there's no channel conflict. Agree the model (wholesale, consignment or drop-ship), stock allocation and returns in writing before 6 Nov.</li>
+      <li>Go live <b>w/c 9 Nov</b> with a collab post from both accounts, a slot in O'Reilly's email and a partnership ad from the O'Reilly's handle. Use UTM-tagged links back to Bali for brand content.</li>
+    </ul>
+    <p class="why">Why: it borrows a larger audience at near-zero media cost. It also gives Bali a credible "as stocked at O'Reilly's" line for its own social and email.</p>
+  </div></div>
+
+  <div class="card move"><span class="n">4</span><div class="body">
+    <h3>Rebuild email around engaged segments, then go big at Black Friday</h3>
+    <ul>
+      <li><b>Default send:</b> 30/60/90-day engagers plus all purchasers, about 5–6k people. That's the audience that made €0.30 per recipient last year. Leave out the unengaged 180-day segment from routine sends.</li>
+      <li><b>Unengaged segment:</b> send one "still want to hear from us?" email with the BF early-access hook in w/c 9 Nov, then include it only in BF and Cyber Monday sends. Sunset it after Christmas to protect deliverability.</li>
+      <li><b>Cadence:</b> 2 sends a week through November, rising to a daily send in BF/Cyber week. Plain-text "note from Sinéad" style emails between designed sends do well in peak weeks.</li>
+      <li><b>Lead with purchasers:</b> October's best email was store credit to purchasers. Repeat that mechanic as "VIP early access" 24 hours before Black Friday.</li>
+      <li><b>Capture:</b> change the site pop-up offer to "Get Black Friday early access" from 2 Nov, and push the men's hoodie waitlist. Both feed the list before peak, when sign-ups are cheapest.</li>
+      <li>Check that campaign links carry UTMs. Shopify logged only 60 email sessions against roughly 800 Klaviyo clicks, so email is probably under-credited.</li>
+    </ul>
+    <p class="why">These are recommendations only. I didn't change anything in Klaviyo.</p>
+  </div></div>
+
+  <div class="card move"><span class="n">5</span><div class="body">
+    <h3>Run organic TikTok and Instagram as a weekly content system</h3>
+    <ul>
+      <li><b>Volume:</b> 5 TikToks or Reels a week, 3 feed posts and daily Stories. Post short-form natively to TikTok and cross-post to Reels.</li>
+      <li><b>Formats that sell activewear:</b> try-on and fit checks by size ("5'4", size S"), "one hoodie, three outfits", couples and His & Hers styling, unboxing gift boxes, behind the scenes of packing BF orders, and stitching creator videos.</li>
+      <li><b>Collab posts by default:</b> use the Instagram collab tag on every creator, Sinéad, Steven and O'Reilly's post so it shows on Bali's grid as well.</li>
+      <li><b>Facebook:</b> it's still Bali's biggest social traffic source (966 sessions). Use it for the gift guide, the Christmas cut-off countdown and partnership ads aimed at gift buyers aged 35+.</li>
+      <li>Use the best organic performers each week as the paid creative. Don't make separate ad content.</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- 4. Calendar -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">04 · Week by week</span><h2>Calendar to 31 December</h2></div>
+  <p class="muted">Black Friday is Fri 27 Nov and Cyber Monday is Mon 30 Nov 2026. Shaded rows are the peak window.</p>
+  <div class="tbl"><table class="cal">
+    <thead><tr><th>Week of</th><th>Focus</th><th>Email &amp; SMS</th><th>Social, creators &amp; O'Reilly's</th><th>Paid</th></tr></thead>
+    <tbody>
+      <tr><td>26 Oct</td><td><span class="chip">Set up</span><br>Grounded drop live</td><td>Grounded follow-up to engagers. "Complete the set" to recent buyers.</td><td>Get ad permissions and TikTok codes from Sinéad, Steven, O'Reilly's and gifted creators. Brief Gerry Lavery on the men's hoodie.</td><td>Retargeting only: site visitors and video viewers from the last 30 days.</td></tr>
+      <tr><td>2 Nov</td><td><span class="chip">Tease</span><br>Men's waitlist opens</td><td>Men's hoodie teaser and waitlist. Pop-up switches to BF early access.</td><td>His & Hers teaser content. Agree O'Reilly's terms and edit by 6 Nov.</td><td>Test 3–4 creator ads at low spend to find the winners.</td></tr>
+      <tr><td>9 Nov</td><td><span class="chip">Launch</span><br>O'Reilly's edit live · Men's hoodie Thu 12 Nov</td><td>Launch email to waitlist then engagers. One re-engagement email to the unengaged segment.</td><td>Collab posts from O'Reilly's, Sinéad and Steven. Creator posts go live.</td><td>Scale the 1–2 best partnership ads. Run an O'Reilly's partnership ad.</td></tr>
+      <tr class="peak"><td>16 Nov</td><td><span class="chip hot">Gift guide</span><br>Gift boxes return</td><td>Gift guide, gift boxes and "for him / for her" emails. BF early-access reminder.</td><td>Unboxing, try-on and "gifts under €50" content. Countdown Stories.</td><td>Move most of the budget here and into BF week. Prospect with creator ads.</td></tr>
+      <tr class="peak"><td>23 Nov</td><td><span class="chip hot">Black Friday</span><br>VIP access Thu 26 · BF Fri 27</td><td>VIP purchasers 24 hours early. Daily sends Thu to Sun, plus SMS on Fri and Sun.</td><td>Creator posts timed for Thu and Fri. Live-style "orders going out" Stories.</td><td>Peak spend. Retarget cart abandoners, viewers and engagers.</td></tr>
+      <tr class="peak"><td>30 Nov</td><td><span class="chip hot">Cyber week</span><br>Last year's best week</td><td>Cyber Monday, then a "last chance" email. The unengaged segment gets the Cyber Monday email only.</td><td>Reshare best-performing creator content. "Restocked" posts for winners.</td><td>Hold spend through Wed, then step down.</td></tr>
+      <tr><td>7 Dec</td><td><span class="chip">Gifting</span><br>8 Dec shopping day</td><td>"Order by" countdown with your courier cut-off date. Bundles and gift cards.</td><td>Christmas styling and family or couples content. O'Reilly's second collab.</td><td>Gift-buyer audiences on Facebook.</td></tr>
+      <tr><td>14 Dec</td><td><span class="chip">Last orders</span></td><td>Final delivery date email and SMS, then switch to e-gift cards.</td><td>"Last day for Christmas delivery" posts. Gift card reels.</td><td>Retargeting only: gift card and last-orders creative.</td></tr>
+      <tr><td>21 Dec</td><td><span class="chip">E-gift cards</span></td><td>E-gift cards, then a Christmas thank-you with no offer.</td><td>Light posting and community content.</td><td>Off or minimal.</td></tr>
+      <tr><td>28 Dec</td><td><span class="chip">Winter sale</span><br>Clear stock, bank January</td><td>Winter sale to engagers. Post-Christmas "spend your gift card" email.</td><td>Sale content and New Year training content.</td><td>Small retargeting budget for the sale.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 5. Budget -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">05 · Spending a smaller budget</span><h2>Where each euro goes</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>By timing</h3>
+      <div class="split">
+        <div class="row"><span>26 Oct – 15 Nov</span><div class="track"><div class="fill" style="width:20%"></div></div><span class="mono num">20%</span></div>
+        <div class="row"><span>16 Nov – 6 Dec</span><div class="track"><div class="fill e" style="width:65%"></div></div><span class="mono num">65%</span></div>
+        <div class="row"><span>7 – 31 Dec</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="mono num">15%</span></div>
+      </div>
+      <p class="muted" style="font-size:13.5px">This follows last year's revenue: 60% of sales came in those three weeks. If any budget can be restored, put it there.</p>
+    </div>
+    <div class="card">
+      <h3>By type</h3>
+      <div class="split">
+        <div class="row"><span>Partnership and Spark Ads</span><div class="track"><div class="fill" style="width:50%"></div></div><span class="mono num">50%</span></div>
+        <div class="row"><span>Retargeting</span><div class="track"><div class="fill" style="width:25%"></div></div><span class="mono num">25%</span></div>
+        <div class="row"><span>Broad prospecting</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="mono num">15%</span></div>
+        <div class="row"><span>Men's hoodie tests</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="mono num">10%</span></div>
+      </div>
+      <p class="muted" style="font-size:13.5px">Product for gifted creators costs stock, not media budget. Paid creators like those on the Paid Wishlist (£4.5k+ per post) aren't good value at this spend level.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Targets -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">06 · Targets</span><h2>Scorecard for the weekly tracker</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Measure</th><th class="r">Last year (27 Oct – 3 Jan)</th><th class="r">Base target</th><th class="r">Stretch</th></tr></thead>
+    <tbody>
+      <tr><td>Net sales</td><td class="r">€83.2k</td><td class="r">€62k</td><td class="r">€83k</td></tr>
+      <tr><td>Cyber week net sales</td><td class="r">€23.8k</td><td class="r">€18k</td><td class="r">€24k</td></tr>
+      <tr><td>Weekly sessions, Nov average</td><td class="r">n/a</td><td class="r">1,600</td><td class="r">2,200</td></tr>
+      <tr><td>Conversion rate</td><td class="r">n/a</td><td class="r">≥1.6%</td><td class="r">≥2.0% in peak</td></tr>
+      <tr><td>New customers per week, peak window</td><td class="r">80–240</td><td class="r">60</td><td class="r">120</td></tr>
+      <tr><td>Email revenue per recipient</td><td class="r">€0.10–0.32</td><td class="r">€0.15</td><td class="r">€0.30</td></tr>
+      <tr><td>Partnership ads live</td><td class="r">n/a</td><td class="r">6 by 16 Nov</td><td class="r">10+</td></tr>
+      <tr><td>Men's hoodie waitlist</td><td class="r">n/a</td><td class="r">300</td><td class="r">600</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="font-size:13.5px">Add three rows to the Marketing Tracker: partnership ad spend and ROAS, O'Reilly's-referred sessions and sales, and email revenue per recipient. Those show whether each move is working.</p>
+</section>
+
+<!-- 7. This week -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">07 · Start now</span><h2>This week, 27 Oct – 1 Nov</h2></div>
+  <ul class="checklist">
+    <li><span class="box"></span><span>Ask Sinéad, Steven and O'Reilly's for Instagram partnership-ad permission and TikTok Spark Ad codes</span><span class="chip">Social</span></li>
+    <li><span class="box"></span><span>Chase content and ad permissions from the six gifted creators. Update the Hub's Whitelisted, Content Live and Ad Live columns</span><span class="chip">Creators</span></li>
+    <li><span class="box"></span><span>Confirm men's hoodie stock date, colours and sizes. Decide between a 12 Nov launch and a pre-order</span><span class="chip">Product</span></li>
+    <li><span class="box"></span><span>Open the commercial conversation with O'Reilly's: edit, pricing, model and returns. Aim to sign off by 6 Nov</span><span class="chip">O'Reilly's</span></li>
+    <li><span class="box"></span><span>Agree the BF offer structure (sitewide %, bundles, VIP early access) and courier cut-off dates</span><span class="chip">Offer</span></li>
+    <li><span class="box"></span><span>Set the email send audience to engagers and purchasers. Plan the one-off re-engagement email</span><span class="chip">Email</span></li>
+    <li><span class="box"></span><span>Book a half-day shoot: His & Hers hoodie, gift boxes and gift-guide flat lays</span><span class="chip">Content</span></li>
+  </ul>
+</section>
+
+<footer>
+  <span><b>Sources (all read-only):</b> Shopify analytics for 1–26 Oct 2026 vs 1–26 Oct 2025 and Q4 2025 weekly; Klaviyo campaign and flow reports; BALI Influencer Hub + AW Drops sheet; O'Reilly's dashboard (May–June 2026). Nothing was changed on either website or in Klaviyo.</span>
+  <span>Figures are Shopify net sales unless stated. Klaviyo revenue uses Klaviyo's own attribution. Prepared 27 Oct 2026.</span>
+</footer>
+
+</div>
