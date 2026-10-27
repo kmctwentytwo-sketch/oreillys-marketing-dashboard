@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bali Brand Guidelines</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: Bali's own system (Inter, black and white, square edges); one column of rules, specimens shown in place */
+:root{
+  --bg:#FFFFFF; --surface:#F5F5F5; --ink:#000000; --body:#333333; --muted:#6B6B6B; --line:#DFDFDF; --sage:#EEF1EA;
+  --good:#2F7A4F; --bad:#A6402E;
+  --f-brand:"Inter",Helvetica,Arial,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E0E0E; --surface:#1A1A1A; --ink:#FFFFFF; --body:#D6D6D6; --muted:#9A9A9A; --line:#2E2E2E; --sage:#232A20;
+  --good:#72C795; --bad:#EE8B78; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E0E0E; --surface:#1A1A1A; --ink:#FFFFFF; --body:#D6D6D6; --muted:#9A9A9A; --line:#2E2E2E; --sage:#232A20;
+  --good:#72C795; --bad:#EE8B78; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--body);font-family:var(--f-brand);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:920px;margin:0 auto;padding-block:40px 72px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{color:var(--ink);margin:0;text-wrap:balance;line-height:1.1;font-family:var(--f-brand)}
+h1{font-size:clamp(40px,8vw,72px);font-weight:800;letter-spacing:-.03em}
+h2{font-size:28px;font-weight:700;letter-spacing:-.015em}
+h3{font-size:17px;font-weight:700}
+p{margin:0;max-width:66ch}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:18px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--ink);padding-top:14px}
+.wordmark{font-weight:800;font-size:clamp(64px,14vw,120px);letter-spacing:-.04em;color:var(--ink);line-height:.9}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g5{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.card{background:var(--surface);padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card ul,.list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.swatch{display:flex;flex-direction:column;gap:6px;min-width:0}
+.chip{height:84px;border:1px solid var(--line)}
+.swatch b{color:var(--ink);font-weight:700;font-size:14px}
+.swatch span{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.spec{display:flex;flex-direction:column;gap:14px;background:var(--surface);padding:20px}
+.spec .row{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:baseline}
+.spec .meta{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.btn{display:inline-block;font-family:var(--f-brand);text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:500;padding:12px 22px;border:1px solid var(--ink);color:var(--ink);background:var(--bg)}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.tbl{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--surface)}
+tr:last-child td{border-bottom:none}
+.no{color:var(--bad)}.yes{color:var(--good)}
+.draft{background:var(--sage);padding:14px 16px;font-size:14px;max-width:none}
+.level{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.level:last-child{border-bottom:none}
+.level .n{font-weight:800;font-size:40px;color:var(--ink);line-height:.9}
+.check{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 20px}
+.check li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline}
+.check li::before{content:"";width:11px;height:11px;border:1.5px solid var(--ink);display:inline-block;transform:translateY(1px)}
+footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+@media (max-width:560px){.spec .row{grid-template-columns:1fr;gap:4px}.level{grid-template-columns:44px 1fr}.level .n{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header style="display:flex;flex-direction:column;gap:16px">
+  <span class="label">Bali Clothing · Ballybofey, Co. Donegal · Brand guidelines v1 · Oct 2026</span>
+  <h1>Brand guidelines</h1>
+  <p style="font-size:18px">How Bali looks, sounds and gets signed off, so daily content can move fast and stay consistent. The fonts and colours come from the live Shopify theme. The tone of voice starts from Klaviyo's analysis of past Bali emails.</p>
+  <p class="draft"><b>Draft for Sinéad's sign-off.</b> The brand line and tone pillars below are proposals. Everything else documents what's already in use.</p>
+</header>
+
+<section class="sec">
+  <div class="sec-head"><span class="label">01 · Brand</span><h2>What Bali is</h2></div>
+  <p style="font-size:20px;color:var(--ink);font-weight:500;max-width:40ch">Activewear for real life in the north-west: training, school runs and everything in between. Owner-led from Ballybofey.</p>
+  <div class="grid g2">
+    <div class="card"><h3>Who it's for</h3><p>Women (and their families, through the kids range) who train, walk and live in their activewear and want it to fit properly. Mostly in Ireland and Northern Ireland.</p></div>
+    <div class="card"><h3>What sets it apart</h3><p>The owner is visible, the team is local, and fit is taken seriously. Bali shows how pieces fit real bodies, and customers can collect in Ballybofey.</p></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="label">02 · Logo</span><h2>The BALI wordmark</h2></div>
+  <div class="card" style="align-items:flex-start"><span class="wordmark">BALI</span><span class="label">Illustration only. Always use the master files.</span></div>
+  <ul class="list">
+    <li><b>Files:</b> BALI-BLACK-Bold (on light backgrounds) and BALI-WHITE-Bold (on dark backgrounds and photos). Both are in Shopify Files.</li>
+    <li><b>Clear space:</b> keep at least the height of the "B" free around the logo.</li>
+    <li><b>Don't</b> stretch, recolour, outline, add shadows or put it on busy parts of an image.</li>
+    <li><b>Minimum size:</b> 18px tall on mobile screens (the site uses 18px mobile and 27px desktop).</li>
+  </ul>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="label">03 · Colour</span><h2>Neutral by design</h2></div>
+  <p>The interface stays black, white and grey, and the product brings the colour. Drop colours (Ember, Grounded) appear in photography, never in the logo or buttons.</p>
+  <div class="grid g5">
+    <div class="swatch"><div class="chip" style="background:#000000"></div><b>Black</b><span>#000000 · logo, headings, buttons</span></div>
+    <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><b>White</b><span>#FFFFFF · backgrounds</span></div>
+    <div class="swatch"><div class="chip" style="background:#333333"></div><b>Charcoal</b><span>#333333 · body text</span></div>
+    <div class="swatch"><div class="chip" style="background:#F5F5F5"></div><b>Light grey</b><span>#F5F5F5 · panels, email background</span></div>
+    <div class="swatch"><div class="chip" style="background:#EEF1EA"></div><b>Sage</b><span>#EEF1EA · badges, soft highlights</span></div>
+  </div>
+  <p class="draft"><b>Tidy-up:</b> Klaviyo emails currently use #373F47 text on #F5F5F7. Change them to Charcoal #333333 on Light grey #F5F5F5 to match the site.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="label">04 · Type</span><h2>Inter, everywhere</h2></div>
+  <div class="spec">
+    <div class="row"><span class="meta">Heading · Inter 700</span><span style="font-weight:700;font-size:34px;color:var(--ink);letter-spacing:-.02em;line-height:1.1">The leggings that stay put</span></div>
+    <div class="row"><span class="meta">Subheading · Inter 500</span><span style="font-weight:500;font-size:18px;color:var(--ink)">Sculpt Leggings · Now in five colours</span></div>
+    <div class="row"><span class="meta">Body · Inter 400, 14–16px</span><span>High-waisted, squat-proof and soft enough to wear all day. Model is 5'6" and wears a size S.</span></div>
+    <div class="row"><span class="meta">Button · Inter 500, uppercase, square</span><span style="display:flex;gap:10px;flex-wrap:wrap"><span class="btn fill">Shop the drop</span><span class="btn">Size guide</span></span></div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Website and email</h3>
+      <ul>
+        <li>The website uses Inter: 700 for headings, 500 for subheadings, 400 for body. Buttons are uppercase with square corners.</li>
+        <li>Email uses Helvetica today. Switch it to Inter, with Helvetica and Arial as fallbacks, so email matches the site wherever web fonts load.</li>
+        <li>Use sentence case for headings. Save uppercase for buttons and short labels.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Social on-screen text</h3>
+      <ul>
+        <li>Use Inter Bold in Canva or CapCut. In the TikTok app, use the "Classic" font, the closest native match.</li>
+        <li>Keep it to 8 words or fewer per line, in sentence case, black or white with no outline.</li>
+        <li>Keep text inside the safe zone: clear of the top 15% and bottom 25% of a vertical video.</li>
+        <li>Turn on captions (subtitles) on every talking video.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="label">05 · Tone of voice</span><h2>Like the owner talking, not a sale sign</h2></div>
+  <p>Klaviyo's analysis of past Bali emails describes the current voice as <b>excited, urgent, inviting and persuasive</b>, with frequent exclamation marks, capitals, emojis and "SHOP NOW". Keep the warmth and the directness. Use less urgency: people tune out urgency when it's on every email, which is part of why the unengaged segment grew.</p>
+  <div class="grid g2">
+    <div class="card"><h3>Real</h3><p>Talk like Sinéad or someone on the team would. Be honest about fit ("size up if you're between sizes") and about what went wrong ("we sold out too fast, it's back").</p></div>
+    <div class="card"><h3>Local and proud</h3><p>Ballybofey, Donegal and the north-west are part of the story. Packed here, collected here, worn here.</p></div>
+    <div class="card"><h3>Encouraging</h3><p>Fitness for everyone, at every size and stage. No "beach body", no guilt and no before-and-after.</p></div>
+    <div class="card"><h3>Clear</h3><p>Every message gives the size, the price, the date and what to do next. Short sentences. Talk to "you"; "we" means Sinéad and the team.</p></div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Rule</th><th>Do</th><th>Don't</th></tr></thead>
+    <tbody>
+      <tr><td>Urgency</td><td class="yes">Only when it's true: a real date, real low stock.</td><td class="no">"LAST CHANCE!!!" on a sale that continues tomorrow.</td></tr>
+      <tr><td>Exclamation marks</td><td class="yes">One at most per message.</td><td class="no">!!! or one on every line.</td></tr>
+      <tr><td>Capitals</td><td class="yes">One word for emphasis in a subject line ("NEW").</td><td class="no">Whole sentences in caps.</td></tr>
+      <tr><td>Emoji</td><td class="yes">1–2 that add meaning (👀 ❤️).</td><td class="no">Rows of 🔥😱💥.</td></tr>
+      <tr><td>Fit info</td><td class="yes">Model height and size on every product post.</td><td class="no">"True to size" with no detail.</td></tr>
+      <tr><td>Calls to action</td><td class="yes">Specific: "Shop the Grounded drop", "Get early access".</td><td class="no">A generic "SHOP NOW" on everything.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Before</th><th>After</th></tr></thead>
+    <tbody>
+      <tr><td class="no">LAST CHANCE!!! Don't miss out 😱🔥</td><td class="yes">Last day for Christmas delivery. Order by 3pm Thursday, or collect in Ballybofey.</td></tr>
+      <tr><td class="no">ELEVATE your workout wardrobe!</td><td class="yes">The leggings that stay put on squat day.</td></tr>
+      <tr><td class="no">Once it's gone, it's gone!! Secure yours NOW</td><td class="yes">We made 60 in this colour. Sizes S and M are going first.</td></tr>
+      <tr><td class="no">Treat yourself, you deserve it ♥️♥️</td><td class="yes">The hoodie I live in from November to March. Sinéad</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="label">06 · Photo and video</span><h2>Show the fit</h2></div>
+  <ul class="list">
+    <li><b>Real people and real places:</b> the team, customers and creators, in Donegal locations, gyms and at home. Use natural light.</li>
+    <li><b>Show the fit:</b> front, side, back and sitting or squatting, with height and size on screen or in the caption.</li>
+    <li><b>On TikTok, a native look beats a polished one.</b> Use the studio shoot for the website, email and the first frames of ads. Phone footage is fine for most social.</li>
+    <li><b>Use commercial-safe music</b> on anything that might become an ad, including creator content.</li>
+    <li><b>Keep it neutral:</b> clean backgrounds, so the product colour carries the image.</li>
+  </ul>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="label">07 · Sign-off</span><h2>Who approves what</h2></div>
+  <p>Daily posting can't wait in a queue, so the level of sign-off depends on the risk. Most content is checked by the person posting it against the checklist below.</p>
+  <div>
+    <div class="level"><span class="n">1</span><div><h3>Daily organic: Stories, everyday posts, comment replies</h3><p>The content owner checks it against the checklist and posts it. No other sign-off. Same day.</p></div></div>
+    <div class="level"><span class="n">2</span><div><h3>Campaign content: drops, emails, SMS, ads, creator briefs, giveaways</h3><p>The marketing lead signs off. Steven checks every price, offer and date against the Online Sales Plan. Submit by launch −8 days. Turnaround 24 hours.</p></div></div>
+    <div class="level"><span class="n">3</span><div><h3>Brand-level: new campaign ideas, events, O'Reilly's collabs, discounts over 27%, new brand assets</h3><p>Sinéad signs off. Turnaround 48 hours.</p></div></div>
+  </div>
+  <h3>Checklist before anything goes out</h3>
+  <ul class="check">
+    <li>Price, offer and dates match the sales plan</li>
+    <li>The product and sizes shown are in stock</li>
+    <li>Logo, Inter type and the neutral palette are used correctly</li>
+    <li>Tone rules are followed (urgency only when true)</li>
+    <li>Model height and size are stated</li>
+    <li>The hook is in the first 2 seconds and on screen</li>
+    <li>One clear CTA with a UTM-tagged link</li>
+    <li>Captions are on and alt text is written</li>
+    <li>Music is commercial-safe if it might be used as an ad</li>
+    <li>Creator posts carry #ad or #gifted, as Irish (ASAI) and UK (ASA) rules require</li>
+    <li>Giveaways have terms and a clear opt-in</li>
+    <li>It's logged in the content calendar</li>
+  </ul>
+</section>
+
+<footer>
+  <span>Sources: the live Shopify theme settings (fonts, colours, logo files, buttons), Klaviyo brand voice analysis and email defaults. Read only; nothing was changed.</span>
+  <span>Draft v1, 27 Oct 2026, for Sinéad's sign-off.</span>
+</footer>
+</div>
+</body>
+</html>
