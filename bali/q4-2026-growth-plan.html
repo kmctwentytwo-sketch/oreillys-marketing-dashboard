@@ -84,13 +84,27 @@ footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;ga
 @media (max-width:560px){.split .row{grid-template-columns:110px 1fr 40px}.move{grid-template-columns:30px 1fr}.move .n{font-size:30px}}
 </style>
 
+<style>
+.flow{display:flex;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.step{display:grid;grid-template-columns:92px 1fr;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.step .when{font-family:var(--f-mono);font-size:12px;color:var(--muted);padding-top:2px}
+.step .what{display:flex;flex-direction:column;gap:4px;min-width:0}
+.step.split-step{background:var(--bg)}
+.step .subj{font-family:var(--f-mono);font-size:12.5px;color:var(--moss)}
+.tag{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+.tag.keep{color:var(--good)}.tag.fix{color:var(--ember)}.tag.gap{color:var(--bad)}
+.note{background:var(--moss-soft);border-radius:4px;padding:14px 16px;font-size:14px}
+@media (max-width:560px){.step{grid-template-columns:1fr;gap:4px}}
+</style>
+
 <div class="wrap">
 
 <header>
-  <div class="eyebrow">Bali Clothing · Rest-of-year plan · 27 Oct – 31 Dec 2026</div>
+  <div class="eyebrow">Bali Clothing · Rest-of-year plan · 27 Oct – 31 Dec 2026 · v2</div>
   <h1>Q4 growth plan: get more people to the site</h1>
-  <p class="lede">October shows the site is converting better than last year. Fewer people are reaching it. This plan uses email, a product launch, TikTok, Facebook, Instagram, creators and partnership ads to rebuild traffic while paid spend stays low. It runs through Black Friday and Christmas.</p>
-  <p class="thesis"><strong>Conversion is up. Traffic is down 30%.</strong>Sessions fell from 6,629 to 4,665 while conversion rose from 1.52% to 1.65%. Each extra 1,000 sessions is worth about €1,300 in net sales at October's rate, so the job for the next nine weeks is traffic.</p>
+  <p class="lede">October shows the site is converting better than last year. Fewer people are reaching it. This plan rebuilds traffic and the email list through Black Friday and Christmas while paid spend stays low. It leans on Sinéad, O'Reilly's, creators, email and organic content.</p>
+  <p class="thesis"><strong>Conversion is up. Traffic and list growth are down.</strong>Sessions fell 30% and new email sign-ups fell from about 540 a month last Nov–Dec to 89 this October. Each extra 1,000 sessions is worth about €1,300 in net sales at October's rate.</p>
 </header>
 
 <!-- 1. Diagnosis -->
@@ -107,8 +121,6 @@ footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;ga
       <tr><td>Sessions</td><td class="r">6,629</td><td class="r">4,665</td><td class="r dn">−29.6%</td></tr>
       <tr><td>Orders</td><td class="r">136</td><td class="r">92</td><td class="r dn">−32.4%</td></tr>
       <tr><td>Average order value</td><td class="r">€72.03</td><td class="r">€69.89</td><td class="r dn">−3.0%</td></tr>
-      <tr><td>Sessions reaching checkout</td><td class="r">189</td><td class="r">204</td><td class="r up">+7.9%</td></tr>
-      <tr><td>Social sessions (Facebook + Instagram)</td><td class="r">2,962</td><td class="r">1,751</td><td class="r dn">−40.9%</td></tr>
       <tr><td>Facebook sessions</td><td class="r">1,907</td><td class="r">966</td><td class="r dn">−49.3%</td></tr>
       <tr><td>Instagram sessions</td><td class="r">1,054</td><td class="r">784</td><td class="r dn">−25.6%</td></tr>
       <tr><td>Search sessions (mostly Google)</td><td class="r">1,308</td><td class="r">992</td><td class="r dn">−24.2%</td></tr>
@@ -122,16 +134,15 @@ footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;ga
       <ul>
         <li><b>The ad cut explains most of the fall.</b> Facebook traffic halved. Branded Google search fell 24% too, because fewer people are seeing Bali in their feeds.</li>
         <li><b>Acquisition is the problem, not loyalty.</b> Returning customers held steady and new customers more than halved.</li>
-        <li><b>Social traffic converts at 0.8%.</b> Direct and search convert at 2.1–2.3%. Social content needs to send warmer visitors, which creator and partnership content does better than brand ads.</li>
+        <li><b>Social traffic converts at 0.8%.</b> Direct and search convert at 2.1–2.3%. Creator and partner content sends warmer visitors than brand ads do.</li>
       </ul>
     </div>
     <div class="card">
-      <h3>Email (Klaviyo, October)</h3>
+      <h3>Email: the unengaged test is done</h3>
       <ul>
-        <li>Campaigns went to about <b>10,300 people</b>, including the "Unengaged 180 days" segment. Open rates were 23–27% and revenue per recipient was €0.04–0.06.</li>
-        <li>Last October's launch email went to <b>5,500 engaged people</b>. It opened at 42% and made €0.30 per recipient, about six times more.</li>
-        <li>The store-credit email to purchasers was this month's best performer: €0.35 per recipient and a 6.3% click rate.</li>
-        <li>Flows have too little traffic to work with. The welcome series reached 216 people and abandoned cart reached 110. They will grow as traffic returns.</li>
+        <li>October's sends deliberately included the unengaged 180-day segment, to see who is really gone after a year of patchy availability and launches. Open rates of 23–27% and €0.04–0.06 per recipient give that answer.</li>
+        <li>Engaged-only sends last year earned €0.10–0.32 per recipient. The next step is a <b>sunset flow</b> (section 05), then sending to engaged subscribers by default.</li>
+        <li>Flows are short of new people: the welcome series reached 216 people in October. Fixing the sign-up form and running lead-gen campaigns fixes that.</li>
       </ul>
     </div>
   </div>
@@ -140,10 +151,9 @@ footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;ga
 <!-- 2. Where Q4 money comes from -->
 <section class="sec">
   <div class="sec-head"><span class="eyebrow">02 · Where Q4 money comes from</span><h2>Three weeks made 60% of last year's Q4</h2></div>
-  <p>Weekly net sales for the same period last year are shown below. From 27 Oct 2025 the business made about <b>€83k</b>. The three weeks from 17 Nov to 7 Dec made <b>€50k</b> of that. Cyber week alone made €23.8k from 334 orders and brought in 238 new customers. Hold back budget, creator content and launches so they land in that window.</p>
+  <p>Weekly net sales for the same period last year are shown below. From 27 Oct 2025 the business made about <b>€83k</b>. The three weeks from 17 Nov to 7 Dec made <b>€50k</b> of that. Cyber week alone made €23.8k from 334 orders and brought in 238 new customers.</p>
   <div class="chart" role="img" aria-label="Bar chart of 2025 weekly net sales from 29 Sep to 29 Dec, peaking at 23,803 euro in the week of 1 December">
     <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
-      <!-- scale: 0–25,000 € mapped to y 220→20 (8px per €1k) -->
       <g stroke="var(--line)" stroke-width="1">
         <line x1="44" y1="220" x2="712" y2="220"/>
         <line x1="44" y1="180" x2="712" y2="180" stroke-dasharray="2 4"/>
@@ -156,10 +166,8 @@ footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;ga
         <text x="38" y="223">€0</text><text x="38" y="183">€5k</text><text x="38" y="143">€10k</text>
         <text x="38" y="103">€15k</text><text x="38" y="63">€20k</text><text x="38" y="23">€25k</text>
       </g>
-      <!-- peak window band: weeks 17 Nov, 24 Nov, 1 Dec (index 7,8,9) -->
       <rect x="374" y="14" width="141" height="206" fill="var(--ember-soft)"/>
       <text x="444" y="12" text-anchor="middle" class="lbl" style="fill:var(--ember)">€50k · 60%</text>
-      <!-- bars: slot 47px from x=50, bar width 32; h = value/1000*8 -->
       <g fill="var(--bar-25)">
         <rect x="50"  y="204.1" width="32" height="15.9"/>
         <rect x="97"  y="205.4" width="32" height="14.6"/>
@@ -191,98 +199,185 @@ footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;ga
     <div class="legend"><span><i style="background:var(--bar-25)"></i>Before the plan window</span><span><i style="background:var(--moss)"></i>Plan window (equivalent weeks)</span><span><i style="background:var(--ember)"></i>Black Friday to Cyber peak</span></div>
   </div>
   <div class="card">
-    <h3>What sold last Q4 and what is selling now</h3>
-    <p>The <b>Baseline Oversized Hoodie</b> was last year's Q4 hero, with €18.1k and 373 units. Its men's cut, the <b>Baseline Oversized Hoodie – Mens</b>, sold 29 units (€1.4k) and is no longer in the range. Stocking fillers were big too: the Winter Beanie sold 309 units and Crew Socks sold 324. This October the leaders are the Signature Oversized Hoodie (€1.4k), Sculpt Leggings (€1.3k) and Signature Half Zip (€1.1k). The "Gift Boxes Drop" email was last November's best campaign, at €2.0k.</p>
+    <h3>Stock is ready this time</h3>
+    <p>The core range is in depth: <b>Signature Oversized Hoodie</b> (327 units), <b>Sculpt Leggings</b> (262), <b>Sculpt Full Zip</b> (157), <b>Baseline Oversized Hoodie</b> (154) and <b>Signature Half Zip</b> (150). These are the products to push, bundle and give to creators. Availability problems hurt this year, so promote only products with depth in every size.</p>
   </div>
 </section>
 
-<!-- 3. Five moves -->
+<!-- 3. Last year -->
 <section class="sec">
-  <div class="sec-head"><span class="eyebrow">03 · The strategy</span><h2>Five moves</h2></div>
-
-  <div class="card move"><span class="n">1</span><div class="body">
-    <h3>Build a partnership-ads engine: Sinéad, Steven, O'Reilly's and creators</h3>
-    <p>Run Bali ads from other people's handles: Meta partnership ads (Instagram and Facebook) and TikTok Spark Ads. Partnership ads usually get cheaper clicks and higher click-through than brand-handle ads because they look like recommendations. That's what a smaller budget needs.</p>
-    <ul>
-      <li><b>Sinéad and Steven:</b> post collab posts (shared to Bali's grid) and grant ad permission once, so the best organic posts can be boosted without new production. Use a talking-to-camera format: "what I'm wearing this winter", "the hoodie I live in", gift picks.</li>
-      <li><b>O'Reilly's:</b> collab posts on the O'Reilly's Instagram and TikTok to launch the "Bali at O'Reilly's" edit (move 3). Run them as partnership ads aimed at O'Reilly's audience and lookalikes.</li>
-      <li><b>Gifted creators already in the Hub:</b> Ciara Gillespie, Emma Murray, Kate Gallagher, Gerry Lavery, Amanda Woods and Georgia Keys have product. Next are the larger approved names, Niamh Gallagher (257k TikTok) and Cáoileánn Conway (237k TikTok). Gerry Lavery is the natural lead for the men's hoodie.</li>
-      <li><b>Fix the bottleneck:</b> in the Influencer Hub, the "Whitelisted", "Content Live" and "Ad Live" columns are almost all unticked. Content is getting made but not used. Get permissions and TikTok ad codes in before Black Friday, and require commercial-safe audio, as the existing reminder template already asks.</li>
-    </ul>
-    <p class="why">Why: social traffic fell 41% and it converts at 0.8%. Creator content brings back reach and warmer clicks without returning to old spend levels.</p>
-  </div></div>
-
-  <div class="card move"><span class="n">2</span><div class="body">
-    <h3>Launch the men's hoodie as the Christmas product story</h3>
-    <ul>
-      <li>Bring back the <b>Baseline Oversized Hoodie – Mens</b> in 2–3 core colours. Position it as "the one for him", with matching His & Hers sets alongside the women's Signature and Baseline hoodies.</li>
-      <li><b>Waitlist first (2–11 Nov):</b> run a "Notify me" sign-up from organic, creators and email. This builds the list for BF and shows how many units to commit.</li>
-      <li><b>Launch on Thu 12 Nov at full price.</b> That's two weeks before Black Friday, so it's in hand for gifting and gets a full-price window. Include it in BF as a bundle (hoodie + beanie + socks) rather than a straight discount.</li>
-      <li>If stock can't land by 12 Nov, run it as a pre-order with a clear "ships by 10 Dec" date. A gifting product that arrives after the Christmas cut-off is a lost sale.</li>
-    </ul>
-    <p class="why">Why: it gives Bali new news to share while ad spend is low, it opens a second buyer (women buying for partners, brothers and dads), and it raises order value through sets.</p>
-  </div></div>
-
-  <div class="card move"><span class="n">3</span><div class="body">
-    <h3>List a Bali edit on O'Reilly's</h3>
-    <ul>
-      <li>O'Reilly's drew <b>58,188 sessions in four weeks</b> in May–June 2026 (from the O'Reilly's dashboard in this repo). That's roughly ten times Bali's monthly traffic. Listing a curated edit puts Bali in front of shoppers it can't currently afford to reach.</li>
-      <li><b>Edit of 6–8 products:</b> Signature Oversized Hoodie, Signature Half Zip, Sculpt Leggings, Baseline Oversized Hoodie (women's and men's), Crew Socks and Beanie as add-ons, plus gift boxes.</li>
-      <li>Keep prices the same as baliclothing.ie so there's no channel conflict. Agree the model (wholesale, consignment or drop-ship), stock allocation and returns in writing before 6 Nov.</li>
-      <li>Go live <b>w/c 9 Nov</b> with a collab post from both accounts, a slot in O'Reilly's email and a partnership ad from the O'Reilly's handle. Use UTM-tagged links back to Bali for brand content.</li>
-    </ul>
-    <p class="why">Why: it borrows a larger audience at near-zero media cost. It also gives Bali a credible "as stocked at O'Reilly's" line for its own social and email.</p>
-  </div></div>
-
-  <div class="card move"><span class="n">4</span><div class="body">
-    <h3>Rebuild email around engaged segments, then go big at Black Friday</h3>
-    <ul>
-      <li><b>Default send:</b> 30/60/90-day engagers plus all purchasers, about 5–6k people. That's the audience that made €0.30 per recipient last year. Leave out the unengaged 180-day segment from routine sends.</li>
-      <li><b>Unengaged segment:</b> send one "still want to hear from us?" email with the BF early-access hook in w/c 9 Nov, then include it only in BF and Cyber Monday sends. Sunset it after Christmas to protect deliverability.</li>
-      <li><b>Cadence:</b> 2 sends a week through November, rising to a daily send in BF/Cyber week. Plain-text "note from Sinéad" style emails between designed sends do well in peak weeks.</li>
-      <li><b>Lead with purchasers:</b> October's best email was store credit to purchasers. Repeat that mechanic as "VIP early access" 24 hours before Black Friday.</li>
-      <li><b>Capture:</b> change the site pop-up offer to "Get Black Friday early access" from 2 Nov, and push the men's hoodie waitlist. Both feed the list before peak, when sign-ups are cheapest.</li>
-      <li>Check that campaign links carry UTMs. Shopify logged only 60 email sessions against roughly 800 Klaviyo clicks, so email is probably under-credited.</li>
-    </ul>
-    <p class="why">These are recommendations only. I didn't change anything in Klaviyo.</p>
-  </div></div>
-
-  <div class="card move"><span class="n">5</span><div class="body">
-    <h3>Run organic TikTok and Instagram as a weekly content system</h3>
-    <ul>
-      <li><b>Volume:</b> 5 TikToks or Reels a week, 3 feed posts and daily Stories. Post short-form natively to TikTok and cross-post to Reels.</li>
-      <li><b>Formats that sell activewear:</b> try-on and fit checks by size ("5'4", size S"), "one hoodie, three outfits", couples and His & Hers styling, unboxing gift boxes, behind the scenes of packing BF orders, and stitching creator videos.</li>
-      <li><b>Collab posts by default:</b> use the Instagram collab tag on every creator, Sinéad, Steven and O'Reilly's post so it shows on Bali's grid as well.</li>
-      <li><b>Facebook:</b> it's still Bali's biggest social traffic source (966 sessions). Use it for the gift guide, the Christmas cut-off countdown and partnership ads aimed at gift buyers aged 35+.</li>
-      <li>Use the best organic performers each week as the paid creative. Don't make separate ad content.</li>
-    </ul>
-  </div></div>
-</section>
-
-<!-- 4. Calendar -->
-<section class="sec">
-  <div class="sec-head"><span class="eyebrow">04 · Week by week</span><h2>Calendar to 31 December</h2></div>
-  <p class="muted">Black Friday is Fri 27 Nov and Cyber Monday is Mon 30 Nov 2026. Shaded rows are the peak window.</p>
-  <div class="tbl"><table class="cal">
-    <thead><tr><th>Week of</th><th>Focus</th><th>Email &amp; SMS</th><th>Social, creators &amp; O'Reilly's</th><th>Paid</th></tr></thead>
+  <div class="sec-head"><span class="eyebrow">03 · Last year</span><h2>What to bring back, fix and fill</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Last year</th><th>Evidence (Q4 2025)</th><th>This year</th></tr></thead>
     <tbody>
-      <tr><td>26 Oct</td><td><span class="chip">Set up</span><br>Grounded drop live</td><td>Grounded follow-up to engagers. "Complete the set" to recent buyers.</td><td>Get ad permissions and TikTok codes from Sinéad, Steven, O'Reilly's and gifted creators. Brief Gerry Lavery on the men's hoodie.</td><td>Retargeting only: site visitors and video viewers from the last 30 days.</td></tr>
-      <tr><td>2 Nov</td><td><span class="chip">Tease</span><br>Men's waitlist opens</td><td>Men's hoodie teaser and waitlist. Pop-up switches to BF early access.</td><td>His & Hers teaser content. Agree O'Reilly's terms and edit by 6 Nov.</td><td>Test 3–4 creator ads at low spend to find the winners.</td></tr>
-      <tr><td>9 Nov</td><td><span class="chip">Launch</span><br>O'Reilly's edit live · Men's hoodie Thu 12 Nov</td><td>Launch email to waitlist then engagers. One re-engagement email to the unengaged segment.</td><td>Collab posts from O'Reilly's, Sinéad and Steven. Creator posts go live.</td><td>Scale the 1–2 best partnership ads. Run an O'Reilly's partnership ad.</td></tr>
-      <tr class="peak"><td>16 Nov</td><td><span class="chip hot">Gift guide</span><br>Gift boxes return</td><td>Gift guide, gift boxes and "for him / for her" emails. BF early-access reminder.</td><td>Unboxing, try-on and "gifts under €50" content. Countdown Stories.</td><td>Move most of the budget here and into BF week. Prospect with creator ads.</td></tr>
-      <tr class="peak"><td>23 Nov</td><td><span class="chip hot">Black Friday</span><br>VIP access Thu 26 · BF Fri 27</td><td>VIP purchasers 24 hours early. Daily sends Thu to Sun, plus SMS on Fri and Sun.</td><td>Creator posts timed for Thu and Fri. Live-style "orders going out" Stories.</td><td>Peak spend. Retarget cart abandoners, viewers and engagers.</td></tr>
-      <tr class="peak"><td>30 Nov</td><td><span class="chip hot">Cyber week</span><br>Last year's best week</td><td>Cyber Monday, then a "last chance" email. The unengaged segment gets the Cyber Monday email only.</td><td>Reshare best-performing creator content. "Restocked" posts for winners.</td><td>Hold spend through Wed, then step down.</td></tr>
-      <tr><td>7 Dec</td><td><span class="chip">Gifting</span><br>8 Dec shopping day</td><td>"Order by" countdown with your courier cut-off date. Bundles and gift cards.</td><td>Christmas styling and family or couples content. O'Reilly's second collab.</td><td>Gift-buyer audiences on Facebook.</td></tr>
-      <tr><td>14 Dec</td><td><span class="chip">Last orders</span></td><td>Final delivery date email and SMS, then switch to e-gift cards.</td><td>"Last day for Christmas delivery" posts. Gift card reels.</td><td>Retargeting only: gift card and last-orders creative.</td></tr>
-      <tr><td>21 Dec</td><td><span class="chip">E-gift cards</span></td><td>E-gift cards, then a Christmas thank-you with no offer.</td><td>Light posting and community content.</td><td>Off or minimal.</td></tr>
-      <tr><td>28 Dec</td><td><span class="chip">Winter sale</span><br>Clear stock, bank January</td><td>Winter sale to engagers. Post-Christmas "spend your gift card" email.</td><td>Sale content and New Year training content.</td><td>Small retargeting budget for the sale.</td></tr>
+      <tr><td><span class="tag keep">Bring back</span><br><b>Gift Boxes Drop</b></td><td>Best campaign of the quarter: €2,021, 21 orders, €0.32 per recipient (21 Nov).</td><td>Launch a week earlier (Mon 16 Nov), built from in-stock heroes.</td></tr>
+      <tr><td><span class="tag keep">Bring back</span><br><b>Black Friday email run</b></td><td>Reminder, Sunday urgency, midweek 50% and BF-day free shipping each made €1.1–1.8k at €0.17–0.27 per recipient.</td><td>Same rhythm, plus VIP early access for purchasers the day before.</td></tr>
+      <tr><td><span class="tag keep">Bring back</span><br><b>Creator discount codes</b></td><td>15+ named codes (chloe_BALI, donna_BALI, gavin_BALI, wendy_BALI, shaun_BALI and more) drove about 50 orders.</td><td>Give every gifted creator, Sinéad and O'Reilly's a named code. It tracks sales without ad data.</td></tr>
+      <tr><td><span class="tag keep">Bring back</span><br><b>O'Reilly's traffic</b></td><td>179 sessions converting at 3.4% (17 Nov – 14 Dec), Bali's best-converting social referrer. This October: 26 sessions.</td><td>Make O'Reilly's a main channel (move 2).</td></tr>
+      <tr><td><span class="tag keep">Bring back</span><br><b>Winter Beanie</b></td><td>309 units across 285 orders, about one order in four.</td><td>Use it as the add-on or gift with purchase over a spend threshold. Socks too (324 units last year).</td></tr>
+      <tr><td><span class="tag fix">Fix</span><br><b>Bali Club Signup form</b></td><td>Q4 2025: 1,676 sign-ups from 12,173 viewers (6.5%). Sep–Oct 2026: 76 from 1,242 (2.3%).</td><td>Rework the offer and setup (section 05).</td></tr>
+      <tr><td><span class="tag gap">Fill the gap</span><br><b>December email</b></td><td>No email campaign was sent after BF day (28 Nov) until January. Cyber week still made €23.8k without one.</td><td>Send Cyber Monday, gift guide, last orders and e-gift card emails.</td></tr>
+      <tr><td><span class="tag gap">Fill the gap</span><br><b>SMS</b></td><td>No SMS campaign since September 2025.</td><td>Use SMS for VIP access, BF, Cyber Monday and the last-order date only.</td></tr>
     </tbody>
   </table></div>
 </section>
 
-<!-- 5. Budget -->
+<!-- 4. Moves -->
 <section class="sec">
-  <div class="sec-head"><span class="eyebrow">05 · Spending a smaller budget</span><h2>Where each euro goes</h2></div>
+  <div class="sec-head"><span class="eyebrow">04 · The strategy</span><h2>Five moves</h2></div>
+
+  <div class="card move"><span class="n">1</span><div class="body">
+    <h3>Sinéad as the face of Bali this Christmas</h3>
+    <p>Content from a real person outperforms brand content at low spend. Sinéad's posts can serve as organic content, partnership ads and email at the same time.</p>
+    <ul>
+      <li><b>Weekly collab posts:</b> 2 Reels or TikToks a week co-posted with Bali (they appear on both grids), plus Stories most days. Formats: "what I'm wearing this week", try-ons in two sizes, gift box packing and Black Friday picks.</li>
+      <li><b>Partnership ads:</b> Sinéad grants ad permission on Instagram and shares a TikTok Spark Ad code once. Bali then boosts the best post each week from Sinéad's handle instead of making separate ads.</li>
+      <li><b>Lead-gen host:</b> Sinéad fronts the Gifting Edit giveaway (section 05), with entries going into Klaviyo.</li>
+      <li><b>Emails from Sinéad:</b> plain-text notes between designed sends, such as "what I'd buy on Black Friday" or "the last day for Christmas delivery". A personal sender usually lifts opens in peak weeks.</li>
+      <li><b>Named code</b> (for example SINEAD_BALI) so sales are counted.</li>
+    </ul>
+  </div></div>
+
+  <div class="card move"><span class="n">2</span><div class="body">
+    <h3>O'Reilly's: list the edit, collaborate and share audiences</h3>
+    <p>Last year O'Reilly's traffic converted at 3.4%, better than any other social source. O'Reilly's drew 58,188 sessions in four weeks in May–June 2026, about ten times Bali's monthly traffic.</p>
+    <ul>
+      <li><b>List a Bali edit on O'Reilly's (live w/c 9 Nov):</b> 6–8 products, all with depth: Signature Oversized Hoodie, Signature Half Zip, Sculpt Leggings, Sculpt Full Zip, Baseline Oversized Hoodie, plus Beanie, Socks and gift boxes. Keep prices the same as baliclothing.ie. Agree the model (wholesale, consignment or drop-ship), stock and returns by 6 Nov.</li>
+      <li><b>Collab posts</b> from both accounts at launch, again at Black Friday and for the December gift guide.</li>
+      <li><b>Partnership ads from the O'Reilly's handle,</b> aimed at O'Reilly's followers and lookalikes.</li>
+      <li><b>Joint giveaway</b> in w/c 16 Nov, with entrants opting in to each brand separately.</li>
+      <li><b>A slot in O'Reilly's email</b> at launch and in BF week, with UTM-tagged links. Use "as stocked at O'Reilly's" in Bali's own content.</li>
+    </ul>
+  </div></div>
+
+  <div class="card move"><span class="n">3</span><div class="body">
+    <h3>Launch the Gifting Edit, not a new product</h3>
+    <ul>
+      <li>The Grounded drop is live (26 Oct). The next launch is the <b>Gifting Edit on Mon 16 Nov</b>: gift boxes and bundles built from in-stock heroes, such as the hoodie and leggings set, the half zip and beanie, and the "cosy box" of hoodie, socks and beanie.</li>
+      <li>The Winter Beanie is the gift with purchase over a set spend from BF week, which lifts order value without a deeper discount.</li>
+      <li>Push gift cards and e-gift cards from 14 Dec, once courier cut-offs pass.</li>
+      <li><b>The men's hoodie is parked.</b> It sold 29 units in 14 months, so it doesn't earn a launch slot in peak season.</li>
+    </ul>
+  </div></div>
+
+  <div class="card move"><span class="n">4</span><div class="body">
+    <h3>Email: sunset the unengaged, grow the list, cover December</h3>
+    <ul>
+      <li>Build the <b>sunset flow</b> now (section 05) so the list is clean before peak.</li>
+      <li>Send to engagers (30/60/90 days) plus all purchasers by default. Send 2 a week in November and daily in BF/Cyber week, then cover December properly.</li>
+      <li>Run <b>lead-gen campaigns</b> and update the <b>sign-up form</b> (section 05) to get sign-ups back toward 500 a month.</li>
+      <li>Check that campaign links carry UTMs. Shopify logged only 60 email sessions in October against roughly 800 Klaviyo clicks.</li>
+    </ul>
+  </div></div>
+
+  <div class="card move"><span class="n">5</span><div class="body">
+    <h3>Grow organic content fast</h3>
+    <p>The aim is volume without extra production, so batch content, reuse it and recycle anything that works (section 06).</p>
+  </div></div>
+</section>
+
+<!-- 5. Email build -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">05 · Email build</span><h2>Sunset flow, lead gen and the form</h2></div>
+
+  <h3>Sunset flow</h3>
+  <p><b>Entry:</b> a segment of people subscribed for over 90 days with no click in 180 days, no site visit in 90 days and no order in 365 days. Use clicks rather than opens, because Apple Mail opens inflate open rates. <b>Exit</b> as soon as someone clicks, orders or visits the site.</p>
+  <div class="flow">
+    <div class="step"><span class="when">Day 0</span><div class="what"><span class="subj">"Still want to hear from us?"</span><span>Short and honest: "We've been quiet and some sizes sold out. Here's what's back." Show the in-stock heroes and three preference buttons: <i>Keep me in</i>, <i>Only new drops and sales</i>, <i>Unsubscribe</i>. Add a line about Black Friday early access to give them a reason to stay.</span></div></div>
+    <div class="step split-step"><span class="when">Wait 4 days</span><div class="what"><span>Split: clicked or ordered → exit back to the main list. Otherwise continue.</span></div></div>
+    <div class="step"><span class="when">Day 4</span><div class="what"><span class="subj">"Something to come back for"</span><span>One incentive, such as free shipping or a beanie with any order, valid for 7 days. Use a product grid of best sellers with stock.</span></div></div>
+    <div class="step split-step"><span class="when">Wait 5 days</span><div class="what"><span>Split: engaged → exit. Otherwise continue.</span></div></div>
+    <div class="step"><span class="when">Day 9</span><div class="what"><span class="subj">"This is our last email (unless you say otherwise)"</span><span>Plain text from Sinéad, with one button: "Keep me on the list."</span></div></div>
+    <div class="step split-step"><span class="when">Wait 3 days</span><div class="what"><span>Still nothing: add the profile to a "Sunset – suppressed" list and suppress from email marketing. Keep their SMS consent if they have it.</span></div></div>
+  </div>
+  <p class="note"><b>Timing:</b> run the first batch from 2 Nov so it finishes before the 16 Nov gift launch. People who haven't responded can still get the BF day and Cyber Monday emails. Final suppression happens on 7 Jan, after peak, when lost sales are least likely. After that, the flow runs all the time for anyone who goes quiet.</p>
+
+  <h3>Lead-gen campaigns</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Campaign</th><th>Dates</th><th>How it works</th><th>Hook</th></tr></thead>
+    <tbody>
+      <tr><td><b>Black Friday early access list</b></td><td>2–26 Nov</td><td>Pop-up, link in bio, Meta lead ads (the integration already exists; see the "Dark Matter Meta Leads" list) and organic Stories.</td><td>"Shop BF 24 hours early, before sizes go"</td></tr>
+      <tr><td><b>Sinéad × Bali Gifting Edit giveaway</b></td><td>9–15 Nov</td><td>Enter through a Klaviyo landing page with email (SMS optional). Run it as a collab post and boost it with a partnership ad.</td><td>"Win the cosy box"</td></tr>
+      <tr><td><b>O'Reilly's × Bali joint giveaway</b></td><td>16–22 Nov</td><td>Posted from both accounts, with separate opt-ins for each brand.</td><td>Bali edit plus an O'Reilly's prize</td></tr>
+      <tr><td><b>Back-in-stock and waitlists</b></td><td>Always on</td><td>The back-in-stock form converts at 53%. Turn it on for every sold-out size and route sign-ups into the welcome flow.</td><td>"Get it when your size lands"</td></tr>
+      <tr><td><b>Gift guide sign-up</b></td><td>1–14 Dec</td><td>A December version of the pop-up offering the gift guide and last-order dates.</td><td>"Never miss the delivery cut-off"</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="font-size:13.5px">Tag every lead with its source (giveaway, BF list, back-in-stock) so the welcome flow can branch and each lead source can be measured.</p>
+
+  <h3>Sign-up form update</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What to change</h3>
+      <ul>
+        <li><b>Run one pop-up at a time.</b> Bali Club Signup and Grounded Popup are both live, so they compete. Set clear rules or merge them.</li>
+        <li><b>Offer from 2 Nov:</b> "Black Friday early access + 10% off your first order". Switch on 1 Dec to "Gift guide + Christmas delivery dates".</li>
+        <li><b>Two steps:</b> email first, then an optional phone number on step two. This rebuilds SMS for BF.</li>
+        <li><b>Timing:</b> show on the second page view or at 40% scroll on mobile, and on exit intent on desktop. Hide it on checkout, cart and from existing subscribers. Keep a small teaser tab after it's closed.</li>
+        <li><b>Mobile first:</b> one product image, a short headline and a single field.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Benchmarks</h3>
+      <ul>
+        <li>Q4 2025 benchmark: 6.5% submit rate on Bali Club Signup. Target 5%+ from November.</li>
+        <li>Sign-ups to aim for: 500 or more a month in Nov and Dec (last year: 509 and 569).</li>
+        <li>Keep the drafts tidy: there are 20+ draft forms. Archive the old ones so the live setup is clear.</li>
+      </ul>
+      <p class="muted" style="font-size:13.5px">These are specs only. I didn't change any form or flow in Klaviyo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Organic -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">06 · Organic content</span><h2>How to grow it fast</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Make more from less</h3>
+      <ul>
+        <li><b>One half-day shoot a week</b> produces 15–20 short clips: try-ons, gift box packing, outfit swaps, detail shots and talking to camera.</li>
+        <li><b>Reuse everything:</b> each clip goes to TikTok, then Reels, Stories, Facebook and email, and the winners become ads.</li>
+        <li><b>Repost creator and Sinéad videos</b> on Bali's channels (collab or stitch) so other people's content fills the calendar.</li>
+        <li><b>Customer content:</b> add a "tag us and you could be featured" ask to the existing Customer Thank You flow, and repost the results.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cadence and series</h3>
+      <ul>
+        <li><b>November:</b> 1 TikTok a day, 3 feed posts a week and daily Stories. <b>BF week:</b> 2 TikToks a day.</li>
+        <li><b>Repeat series</b> people come back for: "Sizing Sunday" (the same piece in two sizes), "Pack orders with us", "One hoodie, three ways" and "What Sinéad's wearing".</li>
+        <li><b>Reply to comments with video</b> to answer fit and sizing questions; it also creates content.</li>
+        <li><b>Every Monday:</b> pick the top 3 posts by saves, shares and site clicks. Boost them and make more like them.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Calendar -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">07 · Week by week</span><h2>Calendar to 31 December</h2></div>
+  <p class="muted">Black Friday is Fri 27 Nov and Cyber Monday is Mon 30 Nov 2026. Shaded rows are the peak window.</p>
+  <div class="tbl"><table class="cal">
+    <thead><tr><th>Week of</th><th>Focus</th><th>Email &amp; SMS</th><th>Sinéad, O'Reilly's &amp; creators</th><th>Paid</th></tr></thead>
+    <tbody>
+      <tr><td>26 Oct</td><td><span class="chip">Set up</span><br>Grounded drop live</td><td>Grounded follow-up to engagers. Build the sunset flow and the BF early-access form.</td><td>Get ad permissions and codes from Sinéad and O'Reilly's. Start the O'Reilly's commercial conversation.</td><td>Retargeting only.</td></tr>
+      <tr><td>2 Nov</td><td><span class="chip">List growth</span></td><td>Sunset flow goes live. New pop-up live. BF early-access campaign starts.</td><td>First Sinéad collab posts. Brief gifted creators. Agree O'Reilly's terms by 6 Nov.</td><td>Meta lead ads for BF early access. Test 3–4 Sinéad and creator ads.</td></tr>
+      <tr><td>9 Nov</td><td><span class="chip">Launch</span><br>O'Reilly's edit live</td><td>"As stocked at O'Reilly's" email. Gifting Edit teaser.</td><td>O'Reilly's collab post. Sinéad × Bali giveaway runs 9–15 Nov.</td><td>Boost the giveaway as a partnership ad. Scale the best creator ad.</td></tr>
+      <tr class="peak"><td>16 Nov</td><td><span class="chip hot">Gifting Edit</span><br>Gift boxes Mon 16</td><td>Gift box launch, then "for her / for them" and gift guide emails. BF early-access reminder.</td><td>O'Reilly's joint giveaway runs 16–22 Nov. Sinéad gift picks.</td><td>Most of the budget goes into the next three weeks.</td></tr>
+      <tr class="peak"><td>23 Nov</td><td><span class="chip hot">Black Friday</span><br>VIP Thu 26 · BF Fri 27</td><td>VIP purchasers 24 hours early. Daily sends Thu to Sun. SMS on Thu and Fri.</td><td>Sinéad and creator posts Thu and Fri. O'Reilly's email feature.</td><td>Peak spend: partnership ads and retargeting.</td></tr>
+      <tr class="peak"><td>30 Nov</td><td><span class="chip hot">Cyber week</span><br>Last year's best week</td><td>Cyber Monday email and SMS, then "last chance". The unengaged segment gets the Cyber Monday email only.</td><td>Reshare top-performing content and post restock updates.</td><td>Hold spend through Wed, then step down.</td></tr>
+      <tr><td>7 Dec</td><td><span class="chip">Gifting</span><br>8 Dec shopping day</td><td>Gift guide pop-up. "Order by" countdown. Note from Sinéad.</td><td>Second O'Reilly's collab: Christmas edit.</td><td>Gift-buyer audiences on Facebook.</td></tr>
+      <tr><td>14 Dec</td><td><span class="chip">Last orders</span></td><td>Final delivery date email and SMS, then switch to e-gift cards.</td><td>"Last day for delivery" posts.</td><td>Retargeting only.</td></tr>
+      <tr><td>21 Dec</td><td><span class="chip">E-gift cards</span></td><td>E-gift cards, then a thank-you email with no offer.</td><td>Light posting and community content.</td><td>Off or minimal.</td></tr>
+      <tr><td>28 Dec</td><td><span class="chip">Winter sale</span></td><td>Winter sale to engagers. "Spend your gift card" email. Sunset suppression on 7 Jan.</td><td>Sale content and New Year training content.</td><td>Small retargeting budget.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 8. Budget -->
+<section class="sec">
+  <div class="sec-head"><span class="eyebrow">08 · Spending a smaller budget</span><h2>Where each euro goes</h2></div>
   <div class="grid g2">
     <div class="card">
       <h3>By timing</h3>
@@ -291,57 +386,54 @@ footer{font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;ga
         <div class="row"><span>16 Nov – 6 Dec</span><div class="track"><div class="fill e" style="width:65%"></div></div><span class="mono num">65%</span></div>
         <div class="row"><span>7 – 31 Dec</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="mono num">15%</span></div>
       </div>
-      <p class="muted" style="font-size:13.5px">This follows last year's revenue: 60% of sales came in those three weeks. If any budget can be restored, put it there.</p>
     </div>
     <div class="card">
       <h3>By type</h3>
       <div class="split">
-        <div class="row"><span>Partnership and Spark Ads</span><div class="track"><div class="fill" style="width:50%"></div></div><span class="mono num">50%</span></div>
+        <div class="row"><span>Partnership ads (Sinéad, O'Reilly's, creators)</span><div class="track"><div class="fill" style="width:50%"></div></div><span class="mono num">50%</span></div>
         <div class="row"><span>Retargeting</span><div class="track"><div class="fill" style="width:25%"></div></div><span class="mono num">25%</span></div>
-        <div class="row"><span>Broad prospecting</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="mono num">15%</span></div>
-        <div class="row"><span>Men's hoodie tests</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="mono num">10%</span></div>
+        <div class="row"><span>Lead gen (lead ads, giveaways)</span><div class="track"><div class="fill" style="width:15%"></div></div><span class="mono num">15%</span></div>
+        <div class="row"><span>Broad prospecting</span><div class="track"><div class="fill" style="width:10%"></div></div><span class="mono num">10%</span></div>
       </div>
-      <p class="muted" style="font-size:13.5px">Product for gifted creators costs stock, not media budget. Paid creators like those on the Paid Wishlist (£4.5k+ per post) aren't good value at this spend level.</p>
     </div>
   </div>
 </section>
 
-<!-- 6. Targets -->
+<!-- 9. Targets -->
 <section class="sec">
-  <div class="sec-head"><span class="eyebrow">06 · Targets</span><h2>Scorecard for the weekly tracker</h2></div>
+  <div class="sec-head"><span class="eyebrow">09 · Targets</span><h2>Scorecard for the weekly tracker</h2></div>
   <div class="tbl"><table>
-    <thead><tr><th>Measure</th><th class="r">Last year (27 Oct – 3 Jan)</th><th class="r">Base target</th><th class="r">Stretch</th></tr></thead>
+    <thead><tr><th>Measure</th><th class="r">Last year</th><th class="r">Base target</th><th class="r">Stretch</th></tr></thead>
     <tbody>
-      <tr><td>Net sales</td><td class="r">€83.2k</td><td class="r">€62k</td><td class="r">€83k</td></tr>
+      <tr><td>Net sales, 27 Oct – 3 Jan</td><td class="r">€83.2k</td><td class="r">€62k</td><td class="r">€83k</td></tr>
       <tr><td>Cyber week net sales</td><td class="r">€23.8k</td><td class="r">€18k</td><td class="r">€24k</td></tr>
-      <tr><td>Weekly sessions, Nov average</td><td class="r">n/a</td><td class="r">1,600</td><td class="r">2,200</td></tr>
-      <tr><td>Conversion rate</td><td class="r">n/a</td><td class="r">≥1.6%</td><td class="r">≥2.0% in peak</td></tr>
-      <tr><td>New customers per week, peak window</td><td class="r">80–240</td><td class="r">60</td><td class="r">120</td></tr>
+      <tr><td>Email sign-ups per month (Nov, Dec)</td><td class="r">509, 569</td><td class="r">350</td><td class="r">550</td></tr>
+      <tr><td>Pop-up submit rate</td><td class="r">6.5%</td><td class="r">4%</td><td class="r">6%</td></tr>
       <tr><td>Email revenue per recipient</td><td class="r">€0.10–0.32</td><td class="r">€0.15</td><td class="r">€0.30</td></tr>
-      <tr><td>Partnership ads live</td><td class="r">n/a</td><td class="r">6 by 16 Nov</td><td class="r">10+</td></tr>
-      <tr><td>Men's hoodie waitlist</td><td class="r">n/a</td><td class="r">300</td><td class="r">600</td></tr>
+      <tr><td>O'Reilly's-referred sessions (Nov–Dec)</td><td class="r">179 in 5 weeks</td><td class="r">400</td><td class="r">1,000+</td></tr>
+      <tr><td>Partnership ads live by 16 Nov</td><td class="r">n/a</td><td class="r">6</td><td class="r">10+</td></tr>
+      <tr><td>Organic posts per week (TikTok + Reels)</td><td class="r">n/a</td><td class="r">7</td><td class="r">14 in BF week</td></tr>
     </tbody>
   </table></div>
-  <p class="muted" style="font-size:13.5px">Add three rows to the Marketing Tracker: partnership ad spend and ROAS, O'Reilly's-referred sessions and sales, and email revenue per recipient. Those show whether each move is working.</p>
 </section>
 
-<!-- 7. This week -->
+<!-- 10. This week -->
 <section class="sec">
-  <div class="sec-head"><span class="eyebrow">07 · Start now</span><h2>This week, 27 Oct – 1 Nov</h2></div>
+  <div class="sec-head"><span class="eyebrow">10 · Start now</span><h2>This week, 27 Oct – 1 Nov</h2></div>
   <ul class="checklist">
-    <li><span class="box"></span><span>Ask Sinéad, Steven and O'Reilly's for Instagram partnership-ad permission and TikTok Spark Ad codes</span><span class="chip">Social</span></li>
-    <li><span class="box"></span><span>Chase content and ad permissions from the six gifted creators. Update the Hub's Whitelisted, Content Live and Ad Live columns</span><span class="chip">Creators</span></li>
-    <li><span class="box"></span><span>Confirm men's hoodie stock date, colours and sizes. Decide between a 12 Nov launch and a pre-order</span><span class="chip">Product</span></li>
-    <li><span class="box"></span><span>Open the commercial conversation with O'Reilly's: edit, pricing, model and returns. Aim to sign off by 6 Nov</span><span class="chip">O'Reilly's</span></li>
-    <li><span class="box"></span><span>Agree the BF offer structure (sitewide %, bundles, VIP early access) and courier cut-off dates</span><span class="chip">Offer</span></li>
-    <li><span class="box"></span><span>Set the email send audience to engagers and purchasers. Plan the one-off re-engagement email</span><span class="chip">Email</span></li>
-    <li><span class="box"></span><span>Book a half-day shoot: His & Hers hoodie, gift boxes and gift-guide flat lays</span><span class="chip">Content</span></li>
+    <li><span class="box"></span><span>Get Instagram partnership-ad permission and a TikTok Spark Ad code from Sinéad and O'Reilly's. Set up named discount codes for both</span><span class="chip">Partners</span></li>
+    <li><span class="box"></span><span>Open the O'Reilly's conversation: edit, pricing, model, returns, collab dates and email slot. Sign off by 6 Nov</span><span class="chip">O'Reilly's</span></li>
+    <li><span class="box"></span><span>Build the sunset segment and flow, ready to go live on 2 Nov</span><span class="chip">Email</span></li>
+    <li><span class="box"></span><span>Rebuild the pop-up with the BF early-access offer and two steps. Leave only one pop-up live</span><span class="chip">Form</span></li>
+    <li><span class="box"></span><span>Confirm Gifting Edit bundles from in-stock heroes, the beanie spend threshold and courier cut-off dates</span><span class="chip">Product</span></li>
+    <li><span class="box"></span><span>Plan the Sinéad giveaway (prize, landing page, terms) for 9 Nov</span><span class="chip">Lead gen</span></li>
+    <li><span class="box"></span><span>Book the first weekly half-day content shoot and set up the series formats</span><span class="chip">Content</span></li>
   </ul>
 </section>
 
 <footer>
-  <span><b>Sources (all read-only):</b> Shopify analytics for 1–26 Oct 2026 vs 1–26 Oct 2025 and Q4 2025 weekly; Klaviyo campaign and flow reports; BALI Influencer Hub + AW Drops sheet; O'Reilly's dashboard (May–June 2026). Nothing was changed on either website or in Klaviyo.</span>
-  <span>Figures are Shopify net sales unless stated. Klaviyo revenue uses Klaviyo's own attribution. Prepared 27 Oct 2026.</span>
+  <span><b>Sources (all read-only):</b> Shopify analytics (Oct 2026 vs Oct 2025, Q4 2025 weekly, referrers, discount codes, inventory); Klaviyo campaign, flow, form and sign-up reports; BALI Influencer Hub + AW Drops sheet; O'Reilly's dashboard (May–June 2026). Nothing was changed on either website or in Klaviyo.</span>
+  <span>Figures are Shopify net sales unless stated. Klaviyo revenue uses Klaviyo's own attribution. Updated 27 Oct 2026.</span>
 </footer>
 
 </div>
